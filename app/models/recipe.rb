@@ -21,6 +21,9 @@ class Recipe < ApplicationRecord
     broadcast_update_to "recipes_count", target: "recipes_count", html: "There are #{Recipe.count} recipes now."
   end
 
+  def to_s
+    self.name
+  end
 
   def self.search_by query
     return [] if query.blank?

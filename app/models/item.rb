@@ -10,6 +10,10 @@ class Item < ApplicationRecord
 	has_many :ingredients, dependent: :nullify
   has_many :recipes, through: :ingredients, source: :recipe
 
+  def to_s
+    self.name
+  end
+
   def self.search_by query
     return [] if query.blank?
 

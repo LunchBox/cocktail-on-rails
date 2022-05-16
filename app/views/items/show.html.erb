@@ -1,6 +1,10 @@
 
-<div class="header">
-  <h1><%= @item.name %></h1>
+<div class="my-4">
+  <%= render "items/breadcrumbs", item: @item %>
+</div>
+
+<div class="my-4">
+  <h1 class="text-xl"><%= @item.name %></h1>
 </div>
 
 <div class="my-4">

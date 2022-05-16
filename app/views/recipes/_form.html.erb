@@ -1,4 +1,4 @@
-<%= simple_form_for recipe, html: { class: "recipe form" } do |f| %>
+<%= simple_form_for recipe, html: { class: "my-4" } do |f| %>
   <% if recipe.errors.any? %>
     <div class="error-message">
       <%= recipe.errors.full_messages.to_sentence.capitalize %>
@@ -6,7 +6,7 @@
   <% end %>
 
   <%= f.file_field :cover_image if false %>
-  <%= f.input :name, input_html: { autofocus: true } %>
+  <%= f.input :name, label: false, input_html: {autofocus: true, placeholder: "Recipe Name"}, wrapper_html: {class: "mb-2"} %>
   <%= link_to "Cancel", :recipes, class: "btn btn--light" %>
   <%= f.submit class: "btn btn--secondary" %>
 <% end%>

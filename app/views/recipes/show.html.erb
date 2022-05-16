@@ -1,5 +1,8 @@
-<%= link_to sanitize("&larr; Back to recipes"), :recipes %>
-<div class="header">
+<div class="my-4">
+  <%= render "recipes/breadcrumbs", recipe: @recipe %>
+</div>
+
+<div class="my-4">
   <% if @recipe.cover_image.attached? %>
     <div>
       <%= image_tag @recipe.cover_image.variant(:thumb) %>
