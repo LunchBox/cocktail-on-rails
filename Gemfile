@@ -11,6 +11,7 @@ gem "sprockets-rails"
 
 # Use sqlite3 as the database for Active Record
 gem "sqlite3", "~> 1.4"
+gem "pg"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
@@ -87,7 +88,6 @@ gem "devise", "~> 4.8"
 gem "ed25519", "~> 1.2"
 gem "bcrypt_pbkdf", "~> 1.0"
 
-gem "tailwindcss-rails", "~> 2.0"
-
+#  gem "tailwindcss-rails", "~> 2.0"
 
 gem 'pagy', '~> 5.10'
