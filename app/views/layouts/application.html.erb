@@ -13,13 +13,10 @@
   <body>
     <header class="mb-4">
       <div class="container mx-auto py-4 border-b">
-        <%= link_to :recipes do  %>
-          Recipes
-        <% end %>
+        <%= link_to "Cocktails", :root, class: "mr-4 font-bold"%>
+        <%= link_to "Recipes", :recipes, class: "mr-2" %>
 
-        <%= link_to :items do %>
-          Items
-        <% end %>
+        <%= link_to "Items", :items %>
       </div>
     </header>
 

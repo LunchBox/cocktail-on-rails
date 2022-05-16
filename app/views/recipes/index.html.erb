@@ -1,14 +1,14 @@
-<div class="header">
+<div class="my-4">
   <h1>
     Recipes
     <span id="recipes_count text-sm text-gray-400">
       <%= @recipes.size %>
     </span>
   </h1>
+</div>
 
-  <div class="my-4">
-    <%= link_to "New Recipe", :new_recipe, class: "btn", data: { turbo_frame: dom_id(Recipe.new) } %>
-  </div>
+<div class="my-4">
+  <%= link_to "New Recipe", :new_recipe, class: "btn", data: { turbo_frame: dom_id(Recipe.new) } %>
 </div>
 
 <%= turbo_frame_tag Recipe.new %>

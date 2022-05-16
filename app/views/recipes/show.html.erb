@@ -12,7 +12,7 @@
   </div>
 </div>
 
-<h2 class="text-l my-4">Ingredients</h2>
+<h2 class="my-4 font-bold">Ingredients</h2>
 
 <%= turbo_frame_tag "#{dom_id @recipe}_ingredients", class: "hello" do %>
   <%= render @recipe.ingredients.ordered %>
