@@ -1,15 +1,17 @@
 <div class="header">
-  <h1>Recipes</h1>
+  <h1>
+    Recipes
+    <span id="recipes_count text-sm text-gray-400">
+      <%= @recipes.size %>
+    </span>
+  </h1>
 
   <div class="my-4">
-    <%= link_to "New Recipe", :new_recipe, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4", data: { turbo_frame: dom_id(Recipe.new) } %>
+    <%= link_to "New Recipe", :new_recipe, class: "btn", data: { turbo_frame: dom_id(Recipe.new) } %>
   </div>
 </div>
 
 <%= turbo_frame_tag Recipe.new %>
-
-<%= render 'search_form' %>
-
 
 <%= turbo_stream_from "recipes" %>
 
@@ -19,6 +21,3 @@
 
 
 <%= turbo_stream_from "recipes_count" %>
-<div id="recipes_count">
-  <%= @recipes.size %>
-</div>

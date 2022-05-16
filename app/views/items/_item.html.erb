@@ -1,5 +1,5 @@
 <%= turbo_frame_tag item do %>
-  <div class="flex items-center">
+  <div class="flex items-center py-1 border-b">
     <% if item.cover_image.attached? %>
       <div class="recipe__thumb">
         <%= image_tag item.cover_image.variant(:thumb) %>
@@ -10,7 +10,9 @@
         <%= highlight item.name, @keyword %>
       <% end %>
 			<% if item.ingredients.size > 0 %>
+        <span class="text-sm text-gray-400">
 				<%= item.ingredients.size %> cocktails
+        </span>
 			<% end %>
     </div>
 		<div class="flex items-center ml-auto">
