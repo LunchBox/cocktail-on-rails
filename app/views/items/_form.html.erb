@@ -1,0 +1,10 @@
+<%= simple_form_for item, html: { class: "recipe form" } do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+	<div>
+		<%= f.file_field :cover_image if false %>
+	</div>
+  <%= f.input :name, input_html: { } %>
+  <%= f.submit class: "btn btn--secondary" %>
+<% end%>

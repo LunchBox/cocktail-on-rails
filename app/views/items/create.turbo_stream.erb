@@ -1,0 +1,3 @@
+
+<%= turbo_stream.append "items", @item %>
+<%= turbo_stream.update Item.new, partial: "items/form", locals: {item: Item.new} %>

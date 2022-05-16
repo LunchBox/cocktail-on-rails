@@ -1,0 +1,10 @@
+<%= link_to sanitize("&larr; Back to recipes"), :recipes %>
+
+<div class="header">
+  <h1>New Recipe</h1>
+</div>
+
+
+<%= turbo_frame_tag @recipe do %>
+  <%= render "form", recipe: @recipe %>
+<% end %>

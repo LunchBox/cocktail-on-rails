@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CocktailOnRails</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+  </head>
+
+  <body>
+    <header class="mb-4">
+      <div class="container mx-auto py-4 border-b">
+        <%= link_to :recipes do  %>
+          Recipes
+        <% end %>
+
+        <%= link_to :items do %>
+          Items
+        <% end %>
+      </div>
+    </header>
+
+    <div class="flash">
+      <%= apply_notice %>
+    </div>
+
+    <main>
+      <div class="container mx-auto">
+        <%= yield %>
+      </div>
+    </main>
+
+    <footer class="my-48">
+      <div class="container mx-auto">
+        &copy; Daniel Cheang 2022-2025
+      </div>
+    </footer>
+  </body>
+</html>

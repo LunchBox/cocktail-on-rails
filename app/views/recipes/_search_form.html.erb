@@ -1,0 +1,11 @@
+<%= form_with url: :recipes, method: :get, html: { class: "recipe form" } do |f| %>
+  <div class="my-4 flex items-center">
+    <%= f.text_field :query, value: params[:query], autofocus: true %>
+
+    <% unless params[:query].blank? %>
+      <%= link_to "Clear", :recipes, class: "btn btn--light"%>
+    <% end %>
+
+    <%= f.submit "Search" %>
+  </div>
+<% end%>

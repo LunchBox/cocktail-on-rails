@@ -1,0 +1,25 @@
+<div class="header">
+  <h1>Items</h1>
+  <%= link_to "New Item", :new_item, class: "btn btn--primary", data: { turbo_frame: dom_id(Item.new) } %>
+</div>
+
+<%= render 'search_form' %>
+
+<%== pagy_nav(@pagy) %>
+
+
+<div class="my-4">
+	<%= turbo_frame_tag "items" do %>
+		<%= render @items %>
+	<% end%>
+</div>
+
+<%== pagy_nav(@pagy) %>
+
+
+<div class="my-4">
+	<%= turbo_frame_tag Item.new do %>
+		<%= render 'form', item: Item.new %>
+	<% end%>
+</div>
+	 

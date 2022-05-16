@@ -1,0 +1,3 @@
+
+<%= turbo_stream.update "#{dom_id @recipe}_#{dom_id Ingredient.new}", "" %>
+<%= turbo_stream.append "#{dom_id @ingredient.recipe}_ingredients", @ingredient %>

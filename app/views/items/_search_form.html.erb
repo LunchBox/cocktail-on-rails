@@ -1,0 +1,11 @@
+<%= form_with url: :items, method: :get, html: { class: "recipe form" } do |f| %>
+  <div class="form__group field_without_errors">
+    <%= f.text_field :query, value: params[:query], class: "form__input" %>
+  </div>
+
+  <% unless params[:query].blank? %>
+    <%= link_to "Clear", :items, class: "btn btn--light"%>
+  <% end %>
+
+  <%= f.submit "Search", class: "btn btn--secondary" %>
+<% end%>

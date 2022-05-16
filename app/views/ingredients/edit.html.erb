@@ -1,0 +1,9 @@
+<%= link_to sanitize("&larr; Back to recipe"), @ingredient.recipe %>
+
+<div class="header">
+  <h1>Edit Ingredient</h1>
+</div>
+
+<%= turbo_frame_tag @ingredient do %>
+  <%= render "form", ingredient: @ingredient %>
+<% end %>

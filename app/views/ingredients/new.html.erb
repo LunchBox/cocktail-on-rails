@@ -1,0 +1,10 @@
+<%= link_to sanitize("&larr; Back to recipe"), @recipe %>
+
+<div class="header">
+  <h1>New Recipe</h1>
+</div>
+
+
+<%= turbo_frame_tag "#{dom_id @recipe}_#{dom_id Ingredient.new}" do %>
+  <%= render "form", ingredient: @ingredient %>
+<% end %>

@@ -1,0 +1,25 @@
+<%= link_to sanitize("&larr; Back to recipes"), :recipes %>
+<div class="header">
+  <% if @recipe.cover_image.attached? %>
+    <div>
+      <%= image_tag @recipe.cover_image.variant(:thumb) %>
+    </div>
+  <% end %>
+  <h1 class="text-xl my-4"><%= @recipe.name %></h1>
+  <div class="flex">
+    <%= link_to "Edit", [:edit, @recipe], class: "btn btn--light mr-1" %>
+    <%= button_to "Delete", @recipe, method: :delete, class: "btn btn--light", form: {data: {turbo_confirm: "Are you sure?"}} %>
+  </div>
+</div>
+
+<h2 class="text-l my-4">Ingredients</h2>
+
+<%= turbo_frame_tag "#{dom_id @recipe}_ingredients", class: "hello" do %>
+  <%= render @recipe.ingredients.ordered %>
+<% end %>
+
+<%= turbo_frame_tag "#{dom_id @recipe}_#{dom_id Ingredient.new}" %>
+
+<div class="mt-8">
+  <%= link_to "Add Item", [:new, @recipe, :ingredient], data: { turbo_frame: "#{dom_id @recipe}_#{dom_id Ingredient.new}" }, class: "btn btn--primary" %>
+</div>

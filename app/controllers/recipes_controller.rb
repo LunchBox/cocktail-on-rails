@@ -1,0 +1,63 @@
+class RecipesController < ApplicationController
+  before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+
+
+  def index
+    if params[:query].blank?
+      @recipes = current_user.recipes.ordered
+    else
+      @keyword = params[:query].strip
+      @recipes = current_user.recipes.search_by(params[:query])
+    end
+  end
+
+  def show
+  end
+
+  def new 
+    @recipe = Recipe.new
+  end
+
+  def create
+    @recipe = Recipe.new recipe_params
+    @recipe.user = current_user
+
+    if @recipe.save
+      respond_to do |format|
+        format.html { redirect_to recipes_path, notice: "Recipe was successfully created." }
+        format.turbo_stream
+      end
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @recipe.update recipe_params 
+      redirect_to recipes_path, notice: "Recipe was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @recipe.destroy
+
+    respond_to do |format|
+      format.html { redirect_to recipes_path, notice: "Recipe was successfully destroyed."}
+    end
+  end
+
+  private
+
+  def set_recipe
+    @recipe = Recipe.find params[:id]
+  end
+
+  def recipe_params
+    params.require(:recipe).permit(:name, :cover_image)
+  end
+end
