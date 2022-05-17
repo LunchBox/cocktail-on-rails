@@ -21,13 +21,14 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new recipe_params
     @recipe.user = current_user
 
-    if @recipe.save
-      respond_to do |format|
-        format.html { redirect_to recipes_path, notice: "Recipe was successfully created." }
-        format.turbo_stream
+    respond_to do |format|
+      if @recipe.save
+        format.html { redirect_to @recipe, notice: "Recipe was successfully created." }
+        format.json { render :show, status: :created, location: @recipe }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @recipe.errors, status: :unprocessable_entity }
       end
-    else
-      render :new, status: :unprocessable_entity
     end
   end
 

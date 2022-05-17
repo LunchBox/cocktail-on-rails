@@ -1,11 +1,11 @@
 import { Application } from "@hotwired/stimulus"
 import TextareaAutogrow from 'stimulus-textarea-autogrow'
-import PlacesAutocomplete from 'stimulus-places-autocomplete'
+import { Autocomplete } from 'stimulus-autocomplete'
 
 
 const application = Application.start()
 application.register('textarea-autogrow', TextareaAutogrow)
-application.register('places', PlacesAutocomplete)
+application.register('autocomplete', Autocomplete)
 
 
 // Configure Stimulus development experience

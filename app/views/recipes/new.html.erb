@@ -1,7 +1,6 @@
-<%= link_to sanitize("&larr; Back to recipes"), :recipes %>
-
-<div class="header">
-  <h1>New Recipe</h1>
+<div class="my-4">
+  <%= render "recipes/breadcrumbs", recipe: nil %> /
+  New
 </div>
 
 <%= render "form", recipe: @recipe %>

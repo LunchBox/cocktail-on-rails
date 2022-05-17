@@ -5,13 +5,13 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="flex items-center">
-    <div data-controller="autocomplete" data-autocomplete-url-value="/items/search">
-      <%= f.input :name, wrapper_html: { class: "ingredient__name" }, input_html: { class: "w-auto", autofocus: true, data: {autocomplete_target: 'input'} } %>
+    <div data-controller="autocomplete" data-autocomplete-url-value="/items/search" data-autocomplete-selected-class="bg-gray-200">
+      <%= f.input :name, label: false, wrapper_html: { class: "ingredient__name" }, input_html: {placeholder: "Item Name", class: "w-auto", autofocus: true, data: {autocomplete_target: 'input'} } %>
       <ul class="list-group absolute" data-autocomplete-target="results"></ul>
     </div>
 
-    <%= f.input :quantity, wrapper_html: { class: "ingredient__quantity" } %>
-    <%= f.input :unit, collection: Ingredient::UNITS, wrapper_html: { class: "ingredient__unit" } %>
+    <%= f.input :quantity, label: false, input_html: {placeholder: "Quantity"}, wrapper_html: { class: "ingredient__quantity" } %>
+    <%= f.input :unit, collection: Ingredient::UNITS, label: false, input_html: {placeholder: "unit"}, wrapper_html: { class: "ingredient__unit" } %>
 
     <%= f.submit class: "btn btn--primary" %>
     <%= link_to "Cancel", @recipe || ingredient.recipe, class: "btn btn--light" %>
