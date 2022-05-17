@@ -4,6 +4,4 @@
   <h1>Edit Recipe</h1>
 </div>
 
-<%= turbo_frame_tag @recipe do %>
-  <%= render "form", recipe: @recipe %>
-<% end %>
+<%= render "form", recipe: @recipe %>

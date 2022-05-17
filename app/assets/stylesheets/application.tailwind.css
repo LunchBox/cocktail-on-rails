@@ -3,6 +3,14 @@
 @tailwind utilities;
 
 
+body {
+  overflow-y: scroll;
+}
+
+textarea {
+  width: 520px;
+}
+
 .btn {
   @apply inline-flex bg-gray-300 hover:bg-gray-400 text-gray-800 py-1 px-2;
 }

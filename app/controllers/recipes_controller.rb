@@ -1,7 +1,6 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
 
-
   def index
     if params[:query].blank?
       @recipes = current_user.recipes.ordered
@@ -36,10 +35,12 @@ class RecipesController < ApplicationController
   end
 
   def update
-    if @recipe.update recipe_params 
-      redirect_to recipes_path, notice: "Recipe was successfully updated."
-    else
-      render :edit, status: :unprocessable_entity
+    respond_to do |format|
+      if @recipe.update(recipe_params)
+        format.html { redirect_to @recipe, notice: "Recipe was successfully updated." }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -58,6 +59,6 @@ class RecipesController < ApplicationController
   end
 
   def recipe_params
-    params.require(:recipe).permit(:name, :cover_image)
+    params.require(:recipe).permit(:name, :desc, :cover_image)
   end
 end
