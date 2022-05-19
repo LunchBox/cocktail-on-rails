@@ -10,6 +10,10 @@ class Ingredient < ApplicationRecord
 
   UNITS = [:ml, :cl, :oz, :part, :dash, :spoon, :tablespoon]
 
+  def name
+    self.item.try(:name) || @name
+  end
+
 	before_validation :save_item
 	def save_item
 		self.name = self.name.to_s.strip.titleize

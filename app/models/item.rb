@@ -14,6 +14,11 @@ class Item < ApplicationRecord
     self.name
   end
 
+  before_validation :cleanup
+  def cleanup
+    self.name = self.name.to_s.strip
+  end
+
   def self.search_by query
     return [] if query.blank?
 
