@@ -7,6 +7,11 @@
   <h1 class="text-xl"><%= @item.name %></h1>
 </div>
 
+<div class="my-4 flex">
+  <%= link_to "Edit", [:edit, @item], class: "btn btn--light mr-1" %>
+  <%= button_to "Delete", @item, method: :delete, class: "btn btn--light", form: {data: {turbo_stream: "_top"}} %>
+</div>
+
 <div class="my-4">
   <%= @item.recipes.size %> cocktails
 </div>

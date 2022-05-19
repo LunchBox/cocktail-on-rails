@@ -1,0 +1,9 @@
+
+<span>
+  /
+  <% item.parent_path.each do |parent| %>
+    <%= link_to parent %> /
+  <% end %>
+
+  <%= link_to item, item, class: "font-bold" %>
+</span>

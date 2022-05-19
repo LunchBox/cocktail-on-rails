@@ -16,8 +16,8 @@
 			<% end %>
     </div>
 		<div class="flex items-center ml-auto">
-      <%= button_to "Delete", item, method: :delete, class: "btn btn--light", form: { data: { turbo_stream: "_top" } } %>
       <%= link_to "Edit", [:edit, item], class: "btn btn--light" %>
+      <%= button_to "Delete", item, method: :delete, class: "btn btn--light", form: { data: { turbo_stream: "_top" } } %>
 		</div>
   </div>
 <% end %>

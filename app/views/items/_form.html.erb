@@ -4,5 +4,11 @@
 
   <%= f.file_field :cover_image if false %>
   <%= f.input :name, label: false, wrapper_html: {class:"mb-2"}, input_html: {placeholder: "Item Name"} %>
+
+  <div data-controller="autocomplete" data-autocomplete-url-value="/items/search" data-autocomplete-selected-class="bg-gray-200">
+    <%= f.input :parent_name, label: false, input_html: {placeholder: "Item Name", class: "w-auto", autofocus: true, data: {autocomplete_target: 'input'} } %>
+    <ul class="list-group absolute" data-autocomplete-target="results"></ul>
+  </div>
+
   <%= f.submit class: "btn btn--secondary" %>
 <% end%>
