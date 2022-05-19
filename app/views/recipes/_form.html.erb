@@ -1,13 +1,31 @@
-<%= simple_form_for recipe, html: { class: "my-4" } do |f| %>
+<%= simple_form_for recipe, html: { class: "my-4", data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' } } do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <%= f.file_field :cover_image if false %>
   <%= f.input :name, label_html: {class: "block"}, input_html: {autofocus: true, placeholder: "Recipe Name"}, wrapper_html: {class: "mb-2"} %>
 
-  <%= f.fields_for :ingredients do |sf| %>
-    <%= render "ingredient_fields", f: sf %>
-  <% end %>
+
+  <div class="my-4"> 
+    <h3 class="font-bold">Ingredients</h3>
+
+    <template data-nested-form-target="template">
+      <%= f.fields_for :ingredients, Ingredient.new, child_index: 'NEW_RECORD' do |sf| %>
+        <%= render "ingredient_fields", f: sf %>
+      <% end %>
+    </template>
+
+    <%= f.fields_for :ingredients do |sf| %>
+      <%= render "ingredient_fields", f: sf %>
+    <% end %>
+
+    <!-- Inserted elements will be injected before that target. -->
+    <div data-nested-form-target="target"></div>
+
+    <div class="my-2">
+      <button type="button" data-action="nested-form#add" class="btn btn--light">Add Item</button>
+    </div>
+  </div>
 
 
   <%= f.input :desc, label_html: {class: "block"}, input_html: {autofocus: true, data: {controller: "textarea-autogrow"}}, wrapper_html: {class: "mb-2"} %>

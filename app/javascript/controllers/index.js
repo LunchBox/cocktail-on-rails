@@ -4,5 +4,16 @@
 
 import { application } from "./application"
 
+import TextareaAutogrow from 'stimulus-textarea-autogrow'
+application.register('textarea-autogrow', TextareaAutogrow)
+
+import { Autocomplete } from 'stimulus-autocomplete'
+application.register('autocomplete', Autocomplete)
+
+import NestedForm from 'stimulus-rails-nested-form'
+application.register('nested-form', NestedForm)
+
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+

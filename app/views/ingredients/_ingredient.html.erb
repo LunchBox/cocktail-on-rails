@@ -1,15 +1,11 @@
 <%= turbo_frame_tag ingredient do %>
   <div class="flex items-center my-1">
-    <div class="mr-2">
-      <%= ingredient.name %>
-    </div>
-    <div class="mr-2">
+    <span class="mr-2">
       <%= ingredient.quantity %>
-    </div>
-    <div class="mr-4">
       <%= ingredient.unit %>
-    </div>
-    <%= button_to "Delete", ingredient, method: :delete, form: { data: { turbo_frame: "_top", turbo_confirm: "Are you sure?" } }, class: "btn btn--light mr-1" %>
-    <%= link_to "Edit", [:edit, ingredient], class: "btn btn--light" %>
+    </span>
+    <span class="mr-2">
+      <%= ingredient.name %>
+    </span>
   </div>
 <% end %>

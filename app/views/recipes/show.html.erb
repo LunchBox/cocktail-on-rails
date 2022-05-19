@@ -17,15 +17,8 @@
 
 <h2 class="my-4 font-bold">Ingredients</h2>
 
-<%= turbo_frame_tag "#{dom_id @recipe}_ingredients", class: "hello" do %>
-  <%= render @recipe.ingredients.ordered %>
-<% end %>
+<%= render @recipe.ingredients.ordered %>
 
-<%= turbo_frame_tag "#{dom_id @recipe}_#{dom_id Ingredient.new}" %>
-
-<div class="my-4">
-  <%= link_to "Add Item", [:new, @recipe, :ingredient], data: { turbo_frame: "#{dom_id @recipe}_#{dom_id Ingredient.new}" }, class: "btn btn--primary" %>
-</div>
 
 <h2 class="my-4 font-bold">Desc</h2>
 <div class="my-4">
