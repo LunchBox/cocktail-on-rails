@@ -5,6 +5,9 @@
 
 <div class="my-4">
   <h1 class="text-xl"><%= @item.name %></h1>
+  <span class="text-sm text-gray-400">
+    <%= @item.involved_ingredient_size %> cocktails
+  </span>
 </div>
 
 <div class="my-4 flex">
@@ -12,10 +15,9 @@
   <%= button_to "Delete", @item, method: :delete, class: "btn btn--light", form: {data: {turbo_stream: "_top"}} %>
 </div>
 
+<h3 class="my-4 font-bold">Recipes</h3>
 <div class="my-4">
-  <%= @item.recipes.size %> cocktails
-</div>
-
-<div class="my-4">
-  <%= render @item.recipes %>
+  <% @item.involved_ingredients.each do |ingredient| %>
+    <%= render ingredient.recipe %>
+  <% end %>
 </div>

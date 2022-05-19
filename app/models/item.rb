@@ -24,6 +24,14 @@ class Item < ApplicationRecord
     self.parent ? self.parent.parent_path + [self.parent] : []
   end
 
+  def involved_ingredient_size
+    self.ingredients.size + (self.parent ? self.parent.involved_ingredient_size : 0)
+  end
+
+  def involved_ingredients
+    Ingredient.where ["item_id in (?)", (self.parent_path + [self]).map(&:id)]
+  end
+
 
   before_validation :cleanup
   def cleanup

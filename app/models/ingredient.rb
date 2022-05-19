@@ -10,14 +10,19 @@ class Ingredient < ApplicationRecord
 
   UNITS = [:ml, :cl, :oz, :part, :dash, :spoon, :tablespoon]
 
+  attr_accessor :_name
   def name
     self.item.try(:name) || @name
   end
+  def name= val
+    self._name = val
+    write_attribute :name, val
+  end
 
-	before_validation :save_item
-	def save_item
-		self.name = self.name.to_s.strip.titleize
-		item = Item.find_or_create_by name: self.name
-		self.item = item
-	end
+  before_validation :save_item
+  def save_item
+    self._name = self._name.to_s.strip.titleize
+    item = Item.find_or_create_by name: self._name
+    self.item = item
+  end
 end
