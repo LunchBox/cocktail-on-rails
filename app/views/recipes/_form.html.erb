@@ -4,6 +4,12 @@
 
   <%= f.file_field :cover_image if false %>
   <%= f.input :name, label_html: {class: "block"}, input_html: {autofocus: true, placeholder: "Recipe Name"}, wrapper_html: {class: "mb-2"} %>
+
+  <%= f.fields_for :ingredients do |sf| %>
+    <%= render "ingredient_fields", f: sf %>
+  <% end %>
+
+
   <%= f.input :desc, label_html: {class: "block"}, input_html: {autofocus: true, data: {controller: "textarea-autogrow"}}, wrapper_html: {class: "mb-2"} %>
   <%= link_to "Cancel", :recipes, class: "btn btn--light" %>
   <%= f.submit class: "btn btn--secondary" %>

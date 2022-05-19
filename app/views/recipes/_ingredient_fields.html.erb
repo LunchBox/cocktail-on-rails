@@ -1,0 +1,10 @@
+
+<div class="flex items-center">
+  <div data-controller="autocomplete" data-autocomplete-url-value="/items/search" data-autocomplete-selected-class="bg-gray-200">
+    <%= f.input :name, label: false, wrapper_html: { class: "ingredient__name" }, input_html: {placeholder: "Item Name", class: "w-auto", autofocus: true, data: {autocomplete_target: 'input'} } %>
+    <ul class="list-group absolute" data-autocomplete-target="results"></ul>
+  </div>
+
+  <%= f.input :quantity, label: false, input_html: {placeholder: "Quantity"}, wrapper_html: { class: "ingredient__quantity" } %>
+  <%= f.input :unit, collection: Ingredient::UNITS, label: false, input_html: {placeholder: "unit"}, wrapper_html: { class: "ingredient__unit" } %>
+</div>
