@@ -91,3 +91,5 @@ gem "bcrypt_pbkdf", "~> 1.0"
 #  gem "tailwindcss-rails", "~> 2.0"
 
 gem 'pagy', '~> 5.10'
+
+gem 'acts-as-taggable-on', '~> 9.0'

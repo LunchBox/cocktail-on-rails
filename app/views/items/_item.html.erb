@@ -1,23 +1,15 @@
-<%= turbo_frame_tag item do %>
-  <div class="flex items-center py-1 border-b">
-    <% if item.cover_image.attached? %>
-      <div class="recipe__thumb">
-        <%= image_tag item.cover_image.variant(:thumb) %>
-      </div>
-    <% end %>
-    <div>
-      <%= link_to item, data: { turbo_frame: "_top" } do %>
-        <%= highlight item.name, @keyword %>
-      <% end %>
-			<% if item.ingredients.size > 0 %>
-        <span class="text-sm text-gray-400">
-				<%= item.ingredients.size %> cocktails
-        </span>
-			<% end %>
+<div class="flex items-center py-1 border-b">
+  <% if item.cover_image.attached? %>
+    <div class="recipe__thumb">
+      <%= image_tag item.cover_image.variant(:thumb) %>
     </div>
-		<div class="flex items-center ml-auto">
-      <%= link_to "Edit", [:edit, item], class: "btn btn--light" %>
-      <%= button_to "Delete", item, method: :delete, class: "btn btn--light", form: { data: { turbo_stream: "_top" } } %>
-		</div>
+  <% end %>
+  <div>
+    <%= render "items/fullpath", item: item %>
+    <% if item.ingredients.size > 0 %>
+      <span class="text-sm text-gray-400">
+        <%= item.ingredients.size %> cocktails
+      </span>
+    <% end %>
   </div>
-<% end %>
+</div>

@@ -5,7 +5,7 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="flex items-center">
-    <div data-controller="autocomplete" data-autocomplete-url-value="/items/search" data-autocomplete-selected-class="bg-gray-200">
+    <div data-controller="autocomplete" data-autocomplete-url-value="/items/search">
       <%= f.input :name, label: false, input_html: {placeholder: "Item Name", class: "w-auto", autofocus: true, data: {autocomplete_target: 'input'} } %>
       <ul class="list-group absolute" data-autocomplete-target="results"></ul>
     </div>

@@ -18,3 +18,11 @@ textarea {
 .btn--primary {
   @apply bg-blue-500 hover:bg-blue-700 text-white;
 }
+
+.list-group-item {
+  @apply py-1 px-2 bg-white border border-b-0 last:border-b hover:bg-gray-100;
+}
+
+.list-group-item.active {
+  @apply bg-gray-200;
+}
