@@ -20,7 +20,7 @@ class Ingredient < ApplicationRecord
 
   before_validation :save_item
   def save_item
-    name = self._name.to_s.strip.titleize
+    name = Item.format_name(self._name)
     item = Item.find_or_create_by name: name
     self.item = item
   end

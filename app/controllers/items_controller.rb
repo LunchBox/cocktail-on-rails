@@ -47,7 +47,6 @@ class ItemsController < ApplicationController
       if @item.save
         format.html { redirect_to item_url(@item), notice: "Item was successfully created." }
         format.json { render :show, status: :created, location: @item }
-        format.turbo_stream
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @item.errors, status: :unprocessable_entity }
@@ -73,9 +72,8 @@ class ItemsController < ApplicationController
     @item.destroy
 
     respond_to do |format|
-      format.html { redirect_to items_url, notice: "Item was successfully destroyed." }
+      format.html { redirect_to :items, notice: "Item was successfully destroyed." }
       format.json { head :no_content }
-      format.turbo_stream
     end
   end
 

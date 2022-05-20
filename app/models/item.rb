@@ -1,5 +1,5 @@
 class Item < ApplicationRecord
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
 
   scope :ordered, -> { order created_at: :asc }
 
@@ -15,6 +15,15 @@ class Item < ApplicationRecord
 
   acts_as_taggable_on :tags
 
+
+  before_validation :cleanup
+  def cleanup
+    self.name = self.class.format_name(self.name)
+  end
+
+  def self.format_name str
+    str.to_s.strip.titleize
+  end
 
   def to_s
     self.name
@@ -33,11 +42,6 @@ class Item < ApplicationRecord
   end
 
 
-  before_validation :cleanup
-  def cleanup
-    self.name = self.name.to_s.strip
-  end
-
   def self.search_by query
     return [] if query.blank?
 
@@ -51,7 +55,7 @@ class Item < ApplicationRecord
 
 	before_validation :save_parent
 	def save_parent
-    name = @parent_name.to_s.strip.titleize
+    name = self.class.format_name(@parent_name)
 
     unless name.blank?
       item = Item.find_or_create_by name: name
