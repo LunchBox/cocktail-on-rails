@@ -44,20 +44,17 @@ class Item < ApplicationRecord
     return self.where(["lower(name) like ?", "%#{query.strip.downcase}%"])
   end
 
-  attr_accessor :_parent_name
+  attr_accessor :parent_name # => @parent_name
   def parent_name
     self.parent.try :name
-  end
-  def parent_name= val
-    self._parent_name = val
   end
 
 	before_validation :save_parent
 	def save_parent
-		self._parent_name = self._parent_name.to_s.strip.titleize
+    name = @parent_name.to_s.strip.titleize
 
-    unless self._parent_name.blank?
-      item = Item.find_or_create_by name: self._parent_name
+    unless name.blank?
+      item = Item.find_or_create_by name: name
       self.parent = item
     end
 	end

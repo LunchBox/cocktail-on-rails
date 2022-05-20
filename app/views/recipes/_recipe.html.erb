@@ -5,7 +5,7 @@
     </div>
   <% end %>
   <div>
-    <%= link_to recipe, data: { turbo_frame: "_top" } do %>
+    <%= link_to recipe do %>
       <%= highlight recipe.name, @keyword %>
     <% end %>
   </div>

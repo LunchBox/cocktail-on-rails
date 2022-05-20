@@ -4,7 +4,7 @@
 </div>
 
 <div class="my-4">
-  <h1 class="text-xl"><%= @item.name %></h1>
+  <h1 class="text-2xl"><%= @item.name %></h1>
   <span class="text-sm text-gray-400">
     <%= @item.involved_ingredient_size %> cocktails
   </span>
@@ -15,9 +15,20 @@
   <%= button_to "Delete", @item, method: :delete, class: "btn btn--light", form: {data: {turbo_stream: "_top"}} %>
 </div>
 
-<h3 class="my-4 font-bold">Recipes</h3>
+<h3 class="my-4 mt-8 text-xl">Recipes</h3>
 <div class="my-4">
   <% @item.involved_ingredients.each do |ingredient| %>
-    <%= render ingredient.recipe %>
+    <div class="py-1 border-b last:border-b-0"> 
+      <%= link_to ingredient.recipe %>
+    </div>
+  <% end %>
+</div>
+
+<h3 class="my-4 mt-k text-xl">Sub Items</h3>
+<div class="my-4">
+  <% @item.children.each do |item| %>
+    <div class="py-1 border-b last:border-b-0">
+      <%= link_to item %>
+    </div>
   <% end %>
 </div>
