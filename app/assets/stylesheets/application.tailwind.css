@@ -26,3 +26,85 @@ textarea {
 .list-group-item.active {
   @apply bg-gray-200;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.pagy-nav,
+.pagy-nav-js {
+  @apply flex space-x-2;
+}
+
+.pagy-nav .page a,
+.pagy-nav .page.active,
+.pagy-nav .page.prev.disabled,
+.pagy-nav .page.next.disabled,
+.pagy-nav-js .page a,
+.pagy-nav-js .page.active,
+.pagy-nav-js .page.prev.disabled,
+.pagy-nav-js .page.next.disabled {
+  @apply block px-3 py-1 text-sm text-gray-500 font-semibold bg-gray-200;
+	@apply hover:bg-gray-300;
+  @apply active:bg-gray-400 active:text-white;
+}
+
+.pagy-nav .page.prev.disabled,
+.pagy-nav .page.next.disabled,
+.pagy-nav-js .page.prev.disabled,
+.pagy-nav-js .page.next.disabled {
+  @apply text-gray-400 cursor-default;
+  @apply hover:text-gray-400 hover:bg-gray-200;
+	@apply active:text-gray-400 active:bg-gray-200;
+}
+
+.pagy-nav .page.active,
+.pagy-nav-js .page.active {
+  @apply text-white cursor-default bg-gray-400;
+  @apply hover:text-white hover:bg-gray-400;
+  @apply active:bg-gray-400 active:text-white;
+}
+
+
+.pagy-combo-nav-js {
+  @apply flex max-w-max rounded-full px-3 py-1 text-sm text-gray-500 font-semibold bg-gray-200;
+}
+
+.pagy-combo-nav-js .pagy-combo-input {
+  @apply bg-white px-2;
+}
+
+.pagy-combo-nav-js .page.prev,
+.pagy-combo-nav-js .page.next {
+  @apply hover:text-gray-800;
+	@apply active:text-gray-800;
+}
+
+.pagy-combo-nav-js .page.prev.disabled,
+.pagy-combo-nav-js .page.next.disabled {
+  @apply text-gray-400 cursor-default;
+}
