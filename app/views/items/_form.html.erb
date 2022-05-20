@@ -6,9 +6,9 @@
   <%= f.input :name, label_html: {class:"block"}, wrapper_html: {class:"my-4"}, input_html: {placeholder: "Item Name"} %>
 
   <div data-controller="autocomplete" data-autocomplete-url-value="/items/search" class="my-4">
-    <%= f.input :parent_name, label: "Category Item", label_html: {class: "block"}, input_html: {class: "w-auto", data: {autocomplete_target: 'input'} } %>
+    <%= f.input :parent_name, label: "Parent Category", label_html: {class: "block"}, input_html: {class: "w-auto", data: {autocomplete_target: 'input'} } %>
     <ul class="list-group absolute" data-autocomplete-target="results"></ul>
   </div>
 
-  <%= f.submit class: "btn btn--secondary" %>
+  <%= f.submit class: "btn btn--primary" %>
 <% end%>

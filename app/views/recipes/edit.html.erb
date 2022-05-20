@@ -1,7 +1,6 @@
-<%= link_to sanitize("&larr; Back to recipe"), @recipe %>
-
 <div class="my-4">
-  <h1>Edit Recipe</h1>
+  <%= render "recipes/breadcrumbs", recipe: @recipe %> / Edit
 </div>
+
 
 <%= render "form", recipe: @recipe %>

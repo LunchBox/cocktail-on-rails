@@ -1,7 +1,5 @@
-<%= link_to sanitize("&larr; Back to item"), @item %>
-
-<div class="header">
-  <h1>Edit Item</h1>
+<div class="my-4">
+  <%= render "items/breadcrumbs", item: @item %> / Edit
 </div>
 
 <%= render "form", item: @item %>
