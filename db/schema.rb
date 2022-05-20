@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_19_121622) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_20_183708) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -37,6 +37,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_19_121622) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string "title"
+    t.text "comment"
+    t.string "commentable_type"
+    t.integer "commentable_id"
+    t.integer "user_id"
+    t.string "role", default: "comments"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "ingredients", force: :cascade do |t|

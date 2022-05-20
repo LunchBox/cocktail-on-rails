@@ -1,0 +1,17 @@
+<%= simple_form_for [@commentable, comment] do |f| %>
+	<div class="flex py-2 border-b">
+		<div class="w-16">
+			<div class="block w-12 h-12 bg-gray-200"></div>
+		</div>
+		<div class="flex-1">
+			<%= f.error_notification %>
+			<%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+			<%= f.input :comment, label: false, input_html: {data: {controller: "textarea-autogrow"}} %>
+
+			<div>
+				<%= hidden_field_tag :commentable_type, @commentable.try(:class) %>
+				<%= hidden_field_tag :commentable_id, @commentable.try(:id) %>
+				<%= f.submit "Submit", class: "btn btn--primary" %>
+			</div>
+	</div>
+<% end %>

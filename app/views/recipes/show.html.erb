@@ -24,3 +24,14 @@
 <div class="my-4">
   <%= simple_format @recipe.desc %>
 </div>
+
+<h2 class="my-4 font-bold">Comments</h2>
+
+<div class="my-4">
+	<%= render @recipe.comments %>
+</div>
+
+<div class="my-4">
+	<% @commentable = @recipe %>
+  <%= render "comments/form", comment: Comment.new %>
+</div>

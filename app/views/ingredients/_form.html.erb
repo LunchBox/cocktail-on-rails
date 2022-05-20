@@ -10,8 +10,8 @@
       <ul class="list-group absolute" data-autocomplete-target="results"></ul>
     </div>
 
-    <%= f.input :quantity, label: false, input_html: {placeholder: "Quantity"}, wrapper_html: { class: "ingredient__quantity" } %>
-    <%= f.input :unit, collection: Ingredient::UNITS, label: false, input_html: {placeholder: "unit"}, wrapper_html: { class: "ingredient__unit" } %>
+    <%= f.input :quantity, label: false, input_html: {placeholder: "Quantity"}, wrapper_html: { class: "" } %>
+    <%= f.input :unit, collection: Ingredient::UNITS, label: false, input_html: {placeholder: "unit"}, wrapper_html: { class: "" } %>
 
     <%= f.submit class: "btn btn--primary" %>
     <%= link_to "Cancel", @recipe || ingredient.recipe, class: "btn btn--light" %>

@@ -1,0 +1,12 @@
+<div id="<%= dom_id comment %>" class="flex py-2 border-b">
+	<div class="w-16">
+		<div class="block w-12 h-12 bg-gray-200"></div>
+	</div>
+	<div class="flex-1">
+		<div class="flex w-full">
+			<span class="font-bold"><%= comment.user %></span>
+			<span class="ml-auto text-gray-500"><%= comment.created_at.to_date %></span>
+		</div>
+		<%= simple_format comment.comment %>
+	</div>
+</div>
