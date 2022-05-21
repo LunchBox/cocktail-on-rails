@@ -1,4 +1,4 @@
-<div class="flex items-center nested-form-wrapper my-2" data-new-record="<%= f.object.new_record? %>">
+<div class="flex items-center nested-form-wrapper" data-new-record="<%= f.object.new_record? %>">
   <div data-controller="autocomplete" data-autocomplete-url-value="/items/search" class="mr-1">
     <%= f.input :name, label: false, 
       input_html: {placeholder: "Item Name", class: "w-auto", data: {autocomplete_target: 'input'} } %>

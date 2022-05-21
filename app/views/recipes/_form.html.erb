@@ -3,7 +3,7 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <%= f.file_field :cover_image if false %>
-  <%= f.input :name, label_html: {class: "block"}, input_html: {autofocus: true, placeholder: "Recipe Name"}, wrapper_html: {class: "mb-2"} %>
+  <%= f.input :name, input_html: {autofocus: true, placeholder: "Recipe Name"}, wrapper_html: {class: "mb-2"} %>
 
 
   <div class="my-4"> 
