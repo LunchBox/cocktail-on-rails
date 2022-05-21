@@ -1,6 +1,5 @@
 class Ingredient < ApplicationRecord
   belongs_to :recipe
-  # belongs_to :item, optional: true
 	belongs_to :item, foreign_key: :name, optional: true
 
   validates :name, presence: true
@@ -18,6 +17,6 @@ class Ingredient < ApplicationRecord
 
 	before_validation :save_item
 	def save_item
-		Item.find_or_create_by name: self.name
+		Item.find_or_create_by name: self.name, user: self.recipe.user
 	end
 end

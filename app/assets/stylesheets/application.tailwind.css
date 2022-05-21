@@ -28,8 +28,14 @@ textarea {
 }
 
 
+label {
+	@apply block;
+}
 
 
+form .input {
+	@apply my-4;
+}
 
 
 

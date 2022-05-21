@@ -9,9 +9,20 @@
 
 <div class="my-4">
   <h1 class="text-2xl"><%= @item.name %></h1>
-  <span class="text-sm text-gray-400">
-    <%= @item.involved_ingredient_size %> cocktails
-  </span>
+  <div class="text-sm text-gray-400">
+		<%= @item.user %> &middot;
+		<span>
+			<%= @item.involved_ingredient_size %> cocktails
+		</span>
+  </div>
+</div>
+
+<div class="my-4 flex">
+  <% if @item.cover_image.attached? %>
+    <div class="recipe__thumb">
+      <%= image_tag @item.cover_image.variant(:thumb) %>
+    </div>
+  <% end %>
 </div>
 
 <div class="my-4 flex">

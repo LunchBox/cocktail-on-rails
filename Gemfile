@@ -93,3 +93,5 @@ gem "bcrypt_pbkdf", "~> 1.0"
 gem 'pagy', '~> 5.10'
 
 gem 'acts-as-taggable-on', '~> 9.0'
+
+gem 'image_processing', '~> 1.2'
