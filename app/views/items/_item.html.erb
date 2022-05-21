@@ -13,4 +13,23 @@
     <% end %>
 		<%= render "items/labels", item: item %>
   </div>
+	<div class="inline-flex ml-4 text-sm text-gray-500">
+		<span class="mr-4">
+			<% if mark = current_user.in_my_bar?(item) %>
+				<%= button_to mark, method: :delete, class: "text-green-500" do %>
+					<i class="fa-solid fa-check"></i> IN BAR
+				<% end %>
+			<% else %>
+				<%= button_to "+ TO MY BAR", [:marks, markable_type: "Item", markable_id: item.id, context: 'bar_item'], method: :post %>
+			<% end %>
+		</span>
+
+		<% if mark = current_user.in_my_wish_list?(item) %>
+			<%= button_to mark, method: :delete, class: "text-green-500" do %>
+				<i class="fa-solid fa-check"></i> ON LIST
+			<% end %>
+		<% else %>
+			<%= button_to "+ WISH", [:marks, markable_type: "Item", markable_id: item.id, context: 'wish_item'], method: :post %>
+		<% end %>
+	</div>
 </div>
