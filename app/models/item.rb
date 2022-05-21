@@ -11,6 +11,7 @@ class Item < ApplicationRecord
   has_many :recipes, through: :ingredients, source: :recipe
 
 	has_many :comments, as: :commentable 
+	has_many :marks, as: :markable 
 
 	belongs_to :user
 

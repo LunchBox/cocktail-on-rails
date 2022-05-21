@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+  resources :marks
   resources :comments
   resources :items do 
     collection do 
       get :search
+			get :my_bar
     end
 		member do 
 			get :edit_labels

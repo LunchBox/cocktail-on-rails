@@ -17,18 +17,25 @@
   </div>
 </div>
 
+
+<div class="my-4 flex">
+  <%= link_to "Edit", [:edit, @item], class: "btn btn--light mr-1" %>
+  <%= link_to "Edit Labels", [:edit_labels, @item], class: "btn btn--light mr-1" %>
+
+	<% if mark = current_user.has_ingredient?(@item) %>
+		<%= button_to "In My Bar", mark, method: :delete, class: "btn btn--light mr-1", form: {data: {}} %>
+	<% else %>
+		<%= button_to "+ Add to My Bar", [:marks, markable_type: "Item", markable_id: @item.id, context: 'ingredient'], class: "btn btn--light mr-1", method: :post %>
+	<% end %>
+  <%= button_to "Delete", @item, method: :delete, class: "btn btn--light", form: {data: {turbo_confirm: "Are you sure?"}} %>
+</div>
+
 <div class="my-4 flex">
   <% if @item.cover_image.attached? %>
     <div class="recipe__thumb">
       <%= image_tag @item.cover_image.variant(:thumb) %>
     </div>
   <% end %>
-</div>
-
-<div class="my-4 flex">
-  <%= link_to "Edit", [:edit, @item], class: "btn btn--light mr-1" %>
-  <%= link_to "Edit Labels", [:edit_labels, @item], class: "btn btn--light mr-1" %>
-  <%= button_to "Delete", @item, method: :delete, class: "btn btn--light", form: {data: {turbo_confirm: "Are you sure?"}} %>
 </div>
 
 <h3 class="my-4 mt-8 text-xl">Recipes</h3>
