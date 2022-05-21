@@ -1,10 +1,6 @@
-<%= link_to sanitize("&larr; Back to items"), :items %>
-
-<div class="header">
-  <h1>New Item</h1>
+<div class="my-4">
+	<%= link_to "Items", :items %> / 
+	New
 </div>
 
-
-<%= turbo_frame_tag @item do %>
-  <%= render "form", item: @item %>
-<% end %>
+<%= render "form", item: @item %>
