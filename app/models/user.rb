@@ -23,8 +23,9 @@ class User < ApplicationRecord
 		return true if item_names.include? item_name
 
 		items.each do |item|
-			return item.collect_labeled_items.map(&:name).include? item_name
+			return true if item.collect_labeled_items.map(&:name).include? item_name
 		end
+		false
 	end
 
 	def wish_items
