@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: %i[ show edit update destroy ]
+  before_action :set_item, only: %i[ show edit update destroy edit_labels add_label remove_label ]
 
   # GET /items or /items.json
   def index
@@ -76,6 +76,27 @@ class ItemsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+	def edit_labels
+	end
+
+	def add_label
+		@item.label_list.add params[:name]
+		@item.save
+    respond_to do |format|
+      format.html { redirect_to [:edit_labels, @item], notice: "Label was successfully added." }
+      format.json { head :no_content }
+    end
+	end
+
+	def remove_label 
+		@item.label_list.remove params[:name]
+		@item.save
+    respond_to do |format|
+      format.html { redirect_to [:edit_labels, @item], notice: "Label was successfully removed." }
+      format.json { head :no_content }
+    end
+	end
 
   private
     # Use callbacks to share common setup or constraints between actions.

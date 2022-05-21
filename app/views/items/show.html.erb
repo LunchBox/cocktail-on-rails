@@ -4,9 +4,7 @@
 </div>
 
 <div class="my-4">
-	<% @item.labels.each do |label| %>
-		<%= link_to label, "", class: "bg-gray-200 text-gray-500 py-1 px-2 rounded-sm text-sm" %>
-	<% end %>
+	<%= render "items/labels", item: @item %>
 </div>
 
 <div class="my-4">
@@ -18,6 +16,7 @@
 
 <div class="my-4 flex">
   <%= link_to "Edit", [:edit, @item], class: "btn btn--light mr-1" %>
+  <%= link_to "Edit Labels", [:edit_labels, @item], class: "btn btn--light mr-1" %>
   <%= button_to "Delete", @item, method: :delete, class: "btn btn--light", form: {data: {turbo_stream: "_top"}} %>
 </div>
 
@@ -26,15 +25,6 @@
   <% @item.involved_ingredients.each do |ingredient| %>
     <div class="py-1 border-b last:border-b-0"> 
       <%= link_to ingredient.recipe %>
-    </div>
-  <% end %>
-</div>
-
-<h3 class="my-4 mt-k text-xl">Sub Items</h3>
-<div class="my-4">
-  <% @item.children.each do |item| %>
-    <div class="py-1 border-b last:border-b-0">
-      <%= link_to item %>
     </div>
   <% end %>
 </div>

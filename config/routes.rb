@@ -4,6 +4,11 @@ Rails.application.routes.draw do
     collection do 
       get :search
     end
+		member do 
+			get :edit_labels
+			put :add_label
+			put :remove_label
+		end
 		resources :comments
   end
   devise_for :users

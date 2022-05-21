@@ -1,8 +1,4 @@
 
-<% item.parent_path.each do |parent| %>
-  <%= link_to parent, parent, class: "" %> /
-<% end %>
-
 <%= link_to item, class: "" do %>
   <%= highlight item.name, @keyword %>
 <% end %>
