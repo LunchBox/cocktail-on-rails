@@ -1,9 +1,9 @@
-<div class="flex items-center py-1 border-b">
-  <% if item.cover_image.attached? %>
-    <div class="recipe__thumb">
-      <%= image_tag item.cover_image.variant(:thumb) %>
-    </div>
-  <% end %>
+<div class="flex py-1 border-b">
+	<div class="w-16 bg-gray-100 mr-2 flex justify-center">
+		<% if item.cover_image.attached? %>
+      <%= image_tag item.cover_image.variant(:thumb), class: "block" %>
+		<% end %>
+	</div>
   <div>
     <%= render "items/fullpath", item: item %>
     <% if item.involved_ingredient_size > 0 %>
