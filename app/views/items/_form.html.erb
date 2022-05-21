@@ -5,5 +5,7 @@
   <%= f.file_field :cover_image if false %>
   <%= f.input :name, label_html: {class:"block"}, wrapper_html: {class:"my-4"}, input_html: {placeholder: "Item Name"} %>
 
+  <%= f.input :label_list, input_html: {value: params[:label]}, label_html: {class:"block"}, wrapper_html: {class:"my-4"} if f.object.new_record? %>
+
   <%= f.submit class: "btn btn--primary" %>
 <% end%>
