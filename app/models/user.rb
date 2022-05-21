@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :recipes
+  has_many :items
 
   has_many :marks, dependent: :destroy
 
@@ -14,6 +15,16 @@ class User < ApplicationRecord
 
 	def in_my_bar? item
 		self.marks.find_by context: "bar_item", markable: item
+	end
+
+	def has_ingredient? item_name
+		items = self.bar_items
+		item_names = items.map &:name
+		return true if item_names.include? item_name
+
+		items.each do |item|
+			return item.collect_labeled_items.map(&:name).include? item_name
+		end
 	end
 
 	def wish_items

@@ -33,7 +33,6 @@ class Item < ApplicationRecord
   end
 
   def collect_labeled_items ext = []
-    # self.parent ? self.parent.parent_path + [self.parent] : []
 		unless ext.include? self
 			ext << self
 			Item.where(name: self.label_list).each do |item|
@@ -48,7 +47,6 @@ class Item < ApplicationRecord
   end
 
   def involved_ingredients
-    # Ingredient.where ["name in (?)", (self.parent_path + [self]).map(&:name)]
 		Ingredient.where ["name in (?)", self.collect_labeled_items.map(&:name)]
   end
 
