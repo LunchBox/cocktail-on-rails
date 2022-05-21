@@ -32,3 +32,14 @@
     </div>
   <% end %>
 </div>
+
+<h2 class="my-4 font-bold">Comments</h2>
+
+<div class="my-4">
+	<% @commentable = @item %>
+  <%= render "comments/form", comment: Comment.new %>
+</div>
+
+<div class="my-4">
+	<%= render @item.comments.recent %>
+</div>

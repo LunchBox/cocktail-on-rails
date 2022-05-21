@@ -7,11 +7,13 @@ class Item < ApplicationRecord
     attachable.variant :thumb, resize_to_limit: [100, 100]
   end
 
-	has_many :ingredients, dependent: :nullify
+	has_many :ingredients, foreign_key: :name
   has_many :recipes, through: :ingredients, source: :recipe
 
 	belongs_to :parent, class_name: "Item", foreign_key: :parent_id, optional: true
 	has_many :children, class_name: "Item", foreign_key: :parent_id
+
+	has_many :comments, as: :commentable 
 
   acts_as_taggable_on :tags
 
@@ -34,11 +36,11 @@ class Item < ApplicationRecord
   end
 
   def involved_ingredient_size
-    self.ingredients.size + (self.parent ? self.parent.involved_ingredient_size : 0)
+		self.involved_ingredients.size
   end
 
   def involved_ingredients
-    Ingredient.where ["item_id in (?)", (self.parent_path + [self]).map(&:id)]
+    Ingredient.where ["name in (?)", (self.parent_path + [self]).map(&:name)]
   end
 
 

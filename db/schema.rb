@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_20_183708) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_21_070432) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -60,8 +60,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_20_183708) do
     t.string "unit", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "item_id"
-    t.index ["item_id"], name: "index_ingredients_on_item_id"
+    t.index ["name"], name: "index_ingredients_on_name"
     t.index ["recipe_id"], name: "index_ingredients_on_recipe_id"
   end
 
@@ -71,6 +70,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_20_183708) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "parent_id"
+    t.index ["name"], name: "index_items_on_name"
   end
 
   create_table "recipes", force: :cascade do |t|
@@ -126,7 +126,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_20_183708) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "ingredients", "items"
   add_foreign_key "ingredients", "recipes"
   add_foreign_key "taggings", "tags"
 end

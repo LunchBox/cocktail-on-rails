@@ -11,7 +11,7 @@ class Recipe < ApplicationRecord
 
 	has_many :comments, as: :commentable 
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: {scope: :user_id}
 
   scope :ordered, -> { order id: :desc }
 
