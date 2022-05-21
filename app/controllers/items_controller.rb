@@ -3,9 +3,9 @@ class ItemsController < ApplicationController
 
   # GET /items or /items.json
   def index
-    if !params[:query].blank?
-      @keyword = params[:query].strip
-      @items = Item.search_by(params[:query])
+    if !params[:q].blank?
+      @keyword = params[:q].strip
+      @items = Item.search_by(params[:q])
 		elsif !params[:label].blank?
 			@items = Item.tagged_with params[:label], on: :labels
     else
