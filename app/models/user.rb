@@ -23,4 +23,13 @@ class User < ApplicationRecord
 	def in_my_wish_list? item
 		self.marks.find_by context: "wish_item", markable: item
 	end
+
+	def available_recipes
+		ingredients = self.bar_items.map(&:involved_ingredients).flatten.uniq
+		all_names = ingredients.map(&:name)
+		recipes = Recipe.where(id: ingredients.map(&:recipe_id))
+		recipes.filter do |r|
+			(r.ingredients.select(:name).map(&:name) - all_names).empty?
+		end
+	end
 end

@@ -10,6 +10,10 @@ class RecipesController < ApplicationController
     end
   end
 
+	def available
+		@recipes = current_user.available_recipes
+	end
+
   def show
   end
 

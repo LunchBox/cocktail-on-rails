@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   devise_for :users
   resources :ingredients
   resources :recipes do 
+		collection do 
+			get :available
+		end
     resources :ingredients
 		resources :comments
   end
