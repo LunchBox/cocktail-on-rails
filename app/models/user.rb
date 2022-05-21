@@ -9,10 +9,18 @@ class User < ApplicationRecord
   has_many :marks, dependent: :destroy
 
 	def bar_items
-		Item.joins(:marks).where(marks: {context: "ingredient", user_id: self.id})
+		Item.joins(:marks).where(marks: {context: "bar_item", user_id: self.id})
 	end
 
-	def has_ingredient? item
-		self.marks.find_by context: "ingredient", markable: item
+	def in_my_bar? item
+		self.marks.find_by context: "bar_item", markable: item
+	end
+
+	def wish_items
+		Item.joins(:marks).where(marks: {context: "wish_item", user_id: self.id})
+	end
+
+	def in_my_wish_list? item
+		self.marks.find_by context: "wish_item", markable: item
 	end
 end

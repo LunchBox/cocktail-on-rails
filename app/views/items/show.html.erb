@@ -22,11 +22,18 @@
   <%= link_to "Edit", [:edit, @item], class: "btn btn--light mr-1" %>
   <%= link_to "Edit Labels", [:edit_labels, @item], class: "btn btn--light mr-1" %>
 
-	<% if mark = current_user.has_ingredient?(@item) %>
+	<% if mark = current_user.in_my_bar?(@item) %>
 		<%= button_to "In My Bar", mark, method: :delete, class: "btn btn--light mr-1", form: {data: {}} %>
 	<% else %>
-		<%= button_to "+ Add to My Bar", [:marks, markable_type: "Item", markable_id: @item.id, context: 'ingredient'], class: "btn btn--light mr-1", method: :post %>
+		<%= button_to "+ Add to My Bar", [:marks, markable_type: "Item", markable_id: @item.id, context: 'bar_item'], class: "btn btn--light mr-1", method: :post %>
 	<% end %>
+
+	<% if mark = current_user.in_my_wish_list?(@item) %>
+		<%= button_to "In My Wish List", mark, method: :delete, class: "btn btn--light mr-1", form: {data: {}} %>
+	<% else %>
+		<%= button_to "+ Add to My Wish List", [:marks, markable_type: "Item", markable_id: @item.id, context: 'wish_item'], class: "btn btn--light mr-1", method: :post %>
+	<% end %>
+
   <%= button_to "Delete", @item, method: :delete, class: "btn btn--light", form: {data: {turbo_confirm: "Are you sure?"}} %>
 </div>
 

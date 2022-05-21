@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     collection do 
       get :search
 			get :my_bar
+			get :my_wish
     end
 		member do 
 			get :edit_labels

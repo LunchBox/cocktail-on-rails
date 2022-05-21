@@ -3,5 +3,5 @@ class Mark < ApplicationRecord
 	belongs_to :user
 
 
-	CONTEXTS = ["ingredient"]
+	CONTEXTS = ["bar_item", "wish_item"]
 end

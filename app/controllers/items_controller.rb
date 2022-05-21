@@ -19,6 +19,11 @@ class ItemsController < ApplicationController
 		@pagy, @items = pagy(@items)
 	end
 
+	def my_wish
+		@items = current_user.wish_items
+		@pagy, @items = pagy(@items)
+	end
+
   def search
     if params[:q].blank?
       @items = []
