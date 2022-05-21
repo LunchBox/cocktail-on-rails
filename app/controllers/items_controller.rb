@@ -3,11 +3,13 @@ class ItemsController < ApplicationController
 
   # GET /items or /items.json
   def index
-    if params[:query].blank?
-      @items = Item.ordered
-    else
+    if !params[:query].blank?
       @keyword = params[:query].strip
       @items = Item.search_by(params[:query])
+		elsif !params[:label].blank?
+			@items = Item.tagged_with params[:label], on: :labels
+    else
+      @items = Item.ordered
     end
 		@pagy, @items = pagy(@items)
   end
