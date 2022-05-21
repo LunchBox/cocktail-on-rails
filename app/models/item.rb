@@ -15,7 +15,8 @@ class Item < ApplicationRecord
 
 	has_many :comments, as: :commentable 
 
-  acts_as_taggable_on :tags
+  acts_as_taggable_on :labels
+  accepts_nested_attributes_for :labels, reject_if: :all_blank, allow_destroy: true
 
 
   before_validation :cleanup

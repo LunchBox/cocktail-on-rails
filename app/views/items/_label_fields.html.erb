@@ -1,0 +1,11 @@
+<div class="flex items-center nested-form-wrapper my-2" data-new-record="<%= f.object.new_record? %>">
+  <div data-controller="autocomplete" data-autocomplete-url-value="/items/search" class="mr-1">
+    <%= f.input :name, label: false, 
+      input_html: {placeholder: "Item Name", class: "w-auto", data: {autocomplete_target: 'input'} } %>
+    <ul class="list-group absolute" data-autocomplete-target="results"></ul>
+  </div>
+
+  <button type="button" data-action="nested-form#remove" class="btn btn--light">Remove</button>
+
+  <%= f.hidden_field :_destroy %>
+</div>

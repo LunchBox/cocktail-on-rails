@@ -4,6 +4,12 @@
 </div>
 
 <div class="my-4">
+	<% @item.labels.each do |label| %>
+		<%= link_to label, "", class: "bg-gray-200 text-gray-500 py-1 px-2 rounded-sm text-sm" %>
+	<% end %>
+</div>
+
+<div class="my-4">
   <h1 class="text-2xl"><%= @item.name %></h1>
   <span class="text-sm text-gray-400">
     <%= @item.involved_ingredient_size %> cocktails
