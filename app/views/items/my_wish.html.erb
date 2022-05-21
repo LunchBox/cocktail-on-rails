@@ -1,7 +1,12 @@
 
 <div class="my-4">
 	<%= link_to "Items", :items %> / 
-	My Wish List
+	My Wish List /
+	<% unless params[:label].blank? %>
+		labeled: <%= params[:label] %>
+		-
+		<%= link_to "Clear", label: nil %>
+	<% end %>
 </div>
 
 
@@ -9,4 +14,3 @@
   <%= render @items %>
 </div>
 
-<%== pagy_nav(@pagy) %>

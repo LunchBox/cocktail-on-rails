@@ -1,9 +1,10 @@
 <div class="my-4">
 	<%= link_to "Items", :items %> / 
+
 	<% unless params[:label].blank? %>
 		labeled: <%= params[:label] %>
 		-
-		<%= link_to "Clear", :items %>
+		<%= link_to "Clear", label: nil %>
 	<% end %>
 </div>
 

@@ -16,12 +16,16 @@ class ItemsController < ApplicationController
 
 	def my_bar
 		@items = current_user.bar_items
-		@pagy, @items = pagy(@items)
+		unless params[:label].blank?
+			@items = @items.tagged_with params[:label], on: :labels
+		end
 	end
 
 	def my_wish
 		@items = current_user.wish_items
-		@pagy, @items = pagy(@items)
+		unless params[:label].blank?
+			@items = @items.tagged_with params[:label], on: :labels
+		end
 	end
 
   def search
