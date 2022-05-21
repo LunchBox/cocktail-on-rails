@@ -81,8 +81,12 @@ class ItemsController < ApplicationController
 	end
 
 	def add_label
-		@item.label_list.add params[:name]
-		@item.save
+		unless params[:name].blank?
+			name = Item.format_name params[:name]
+			Item.find_or_create_by name: name
+			@item.label_list.add name
+			@item.save
+		end
     respond_to do |format|
       format.html { redirect_to [:edit_labels, @item], notice: "Label was successfully added." }
       format.json { head :no_content }
@@ -90,8 +94,10 @@ class ItemsController < ApplicationController
 	end
 
 	def remove_label 
-		@item.label_list.remove params[:name]
-		@item.save
+		unless params[:name].blank?
+			@item.label_list.remove params[:name]
+			@item.save
+		end
     respond_to do |format|
       format.html { redirect_to [:edit_labels, @item], notice: "Label was successfully removed." }
       format.json { head :no_content }

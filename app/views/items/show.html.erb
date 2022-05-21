@@ -17,7 +17,7 @@
 <div class="my-4 flex">
   <%= link_to "Edit", [:edit, @item], class: "btn btn--light mr-1" %>
   <%= link_to "Edit Labels", [:edit_labels, @item], class: "btn btn--light mr-1" %>
-  <%= button_to "Delete", @item, method: :delete, class: "btn btn--light", form: {data: {turbo_stream: "_top"}} %>
+  <%= button_to "Delete", @item, method: :delete, class: "btn btn--light", form: {data: {turbo_confirm: "Are you sure?"}} %>
 </div>
 
 <h3 class="my-4 mt-8 text-xl">Recipes</h3>
