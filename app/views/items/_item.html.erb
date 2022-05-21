@@ -6,30 +6,37 @@
 	</div>
   <div>
     <%= render "items/fullpath", item: item %>
+
     <% if item.involved_ingredient_size > 0 %>
       <span class="text-sm text-gray-400">
         <%= item.involved_ingredient_size %> cocktails
       </span>
     <% end %>
-		<%= render "items/labels", item: item %>
-  </div>
-	<div class="inline-flex ml-4 text-sm text-gray-500">
-		<span class="mr-4">
+
+		<span class="ml-2 text-sm text-gray-400">
 			<% if mark = current_user.in_my_bar?(item) %>
-				<%= button_to mark, method: :delete, class: "text-green-500" do %>
+				<%= button_to mark, method: :delete, class: "inline text-green-500", form_class: "inline" do %>
 					<i class="fa-solid fa-check"></i> IN BAR
 				<% end %>
+			<% elsif current_user.has_ingredient? item.name %>
+				<span class="text-orange-500">
+					<i class="fa-solid fa-check"></i> IN BAR
+				</span>
 			<% else %>
-				<%= button_to "+ TO MY BAR", [:marks, markable_type: "Item", markable_id: item.id, context: 'bar_item'], method: :post %>
+				<%= button_to "+ TO MY BAR", [:marks, markable_type: "Item", markable_id: item.id, context: 'bar_item'], method: :post, form_class: "inline" %>
 			<% end %>
 		</span>
 
-		<% if mark = current_user.in_my_wish_list?(item) %>
-			<%= button_to mark, method: :delete, class: "text-green-500" do %>
-				<i class="fa-solid fa-check"></i> ON LIST
+		<span class="ml-2 mr-4 text-sm text-gray-400">
+			<% if mark = current_user.in_my_wish_list?(item) %>
+				<%= button_to mark, method: :delete, class: "text-green-500", form_class: "inline" do %>
+					<i class="fa-solid fa-check"></i> ON LIST
+				<% end %>
+			<% else %>
+				<%= button_to "+ WISH", [:marks, markable_type: "Item", markable_id: item.id, context: 'wish_item'], method: :post, form_class: "inline" %>
 			<% end %>
-		<% else %>
-			<%= button_to "+ WISH", [:marks, markable_type: "Item", markable_id: item.id, context: 'wish_item'], method: :post %>
-		<% end %>
-	</div>
+		</span>
+
+		<%= render "items/labels", item: item %>
+  </div>
 </div>
