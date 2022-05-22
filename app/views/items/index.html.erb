@@ -9,6 +9,13 @@
 </div>
 
 <div class="my-4">
+	<%= form_with url: :items, method: :get do %>
+		<%= text_field_tag :q, params[:q] %>
+		<%= submit_tag "Search", class: "btn btn--light" %>	
+	<% end %>
+</div>
+
+<div class="my-4">
 	<%= link_to "Add Item", :new_item, class: "btn btn--light" %>
 </div>
 
