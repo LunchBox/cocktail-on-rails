@@ -11,6 +11,9 @@ class Recipe < ApplicationRecord
 
 	has_many :comments, as: :commentable 
 
+  acts_as_taggable_on :labels
+  accepts_nested_attributes_for :labels, reject_if: :all_blank, allow_destroy: true
+
   validates :name, presence: true, uniqueness: {scope: :user_id}
 
   scope :ordered, -> { order id: :desc }

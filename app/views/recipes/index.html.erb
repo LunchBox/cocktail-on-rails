@@ -1,5 +1,11 @@
 <div class="my-4">
-  <%= render "recipes/breadcrumbs", recipe: nil %>
+	<%= link_to "Recipes", :recipes %> / 
+
+	<% unless params[:label].blank? %>
+		labeled: <%= params[:label] %>
+		-
+		<%= link_to "Clear", label: nil %>
+	<% end %>
 </div>
 
 <div class="my-4">

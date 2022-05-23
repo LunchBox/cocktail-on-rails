@@ -1,0 +1,25 @@
+<div class="my-4">
+  <%= render "recipes/breadcrumbs", recipe: @recipe %> / Edit Labels
+</div>
+
+<div class="my-4">
+	<% @recipe.labels.each do |label| %>
+		<div class="flex items-center py-1 border-b">
+			<%= label %>
+			<%= button_to "Remove", [:remove_label, @recipe, name: label.to_s], class: "ml-4 btn btn--light", method: :put, 
+				form: {data: {turbo_method: :put, turbo_confirm: "Are you sure?"}} %>
+		</div>
+	<% end %>
+</div>
+
+
+<%= simple_form_for @recipe, url: [:add_label, @recipe], html: { class: "my-4" }, method: :put do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="my-4">
+    <%= text_field_tag :name, nil, class: "w-auto" %>
+  </div>
+
+  <%= f.submit "Add", class: "btn btn--primary" %>
+<% end%>

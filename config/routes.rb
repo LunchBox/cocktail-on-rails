@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :marks
   resources :comments
+
   resources :items do 
     collection do 
       get :search
@@ -14,12 +15,20 @@ Rails.application.routes.draw do
 		end
 		resources :comments
   end
+
   devise_for :users
   resources :ingredients
   resources :recipes do 
 		collection do 
 			get :available
 		end
+      
+		member do 
+			get :edit_labels
+			put :add_label
+			put :remove_label
+		end
+
     resources :ingredients
 		resources :comments
   end

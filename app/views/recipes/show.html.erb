@@ -3,6 +3,12 @@
 </div>
 
 <div class="my-4">
+  <% @recipe.labels.each do |label| %>
+    <%= link_to label, [:recipes, {label: label.to_s}],  class: "bg-gray-200 text-gray-500 py-1 px-2 rounded-sm text-sm" %>
+  <% end %>
+</div>
+
+<div class="my-4">
   <% if @recipe.cover_image.attached? %>
     <div>
       <%= image_tag @recipe.cover_image.variant(:thumb) %>
@@ -21,6 +27,7 @@
 <div class="my-4">
   <div class="flex">
     <%= link_to "Edit", [:edit, @recipe], class: "btn btn--light mr-1" %>
+    <%= link_to "Edit Labels", [:edit_labels, @recipe], class: "btn btn--light mr-1" %>
     <%= button_to "Delete", @recipe, method: :delete, class: "btn btn--light", form: {data: {turbo_confirm: "Are you sure?"}} %>
   </div>
 </div>

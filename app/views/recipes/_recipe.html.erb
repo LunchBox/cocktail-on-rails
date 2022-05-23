@@ -1,4 +1,4 @@
-<div class="recipe box py-1 border-b">
+<div class="flex py-1 border-b">
   <% if recipe.cover_image.attached? %>
     <div>
       <%= image_tag recipe.cover_image.variant(:thumb) %>
@@ -8,5 +8,8 @@
     <%= link_to recipe do %>
       <%= highlight recipe.name, @keyword %>
     <% end %>
+  </div>
+  <div class="ml-4">
+    <%= render "recipes/labels", recipe: recipe %>
   </div>
 </div>

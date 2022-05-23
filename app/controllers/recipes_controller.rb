@@ -1,12 +1,14 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+  before_action :set_recipe, only: [:show, :edit, :edit_labels, :update, :destroy, :add_label, :remove_label]
 
   def index
-    if params[:query].blank?
-      @recipes = current_user.recipes.ordered
-    else
+    if !params[:query].blank?
       @keyword = params[:query].strip
       @recipes = current_user.recipes.search_by(params[:query])
+		elsif !params[:label].blank?
+      @recipes = current_user.recipes.tagged_with params[:label], on: :labels
+    else
+      @recipes = current_user.recipes.ordered
     end
   end
 
@@ -56,6 +58,32 @@ class RecipesController < ApplicationController
       format.html { redirect_to recipes_path, notice: "Recipe was successfully destroyed."}
     end
   end
+  
+	def edit_labels
+	end
+
+	def add_label
+		unless params[:name].blank?
+      name = params[:name].strip
+			@recipe.label_list.add name
+			@recipe.save
+		end
+    respond_to do |format|
+      format.html { redirect_to [:edit_labels, @recipe], notice: "Label was successfully added." }
+      format.json { head :no_content }
+    end
+	end
+
+	def remove_label 
+		unless params[:name].blank?
+			@recipe.label_list.remove params[:name]
+			@recipe.save
+		end
+    respond_to do |format|
+      format.html { redirect_to [:edit_labels, @recipe], notice: "Label was successfully removed." }
+      format.json { head :no_content }
+    end
+	end
 
   private
 
