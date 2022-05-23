@@ -18,6 +18,8 @@ class Recipe < ApplicationRecord
 
   scope :ordered, -> { order id: :desc }
 
+  TIMINGS = ["before dinner", "after dinner", "all day"]
+
 
   # after_create_commit -> { broadcast_prepend_to "recipes", partial: "recipes/recipe", locals: { recipe: self }, target: "recipes" }
   # after_create_commit -> { broadcast_prepend_to "recipes" }
