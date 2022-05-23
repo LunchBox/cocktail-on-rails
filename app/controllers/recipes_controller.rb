@@ -12,6 +12,19 @@ class RecipesController < ApplicationController
     end
   end
 
+  def labels
+    if params[:q].blank?
+      @labels = []
+    else
+      @keyword = params[:q].strip
+      @labels = current_user.recipes.top_labels.where ["lower(name) like (?)", "%#{params[:q]}%"]
+    end
+
+    respond_to do |format|
+      format.html { render layout: false }
+    end
+  end
+
 	def available
 		@recipes = current_user.available_recipes
 	end
@@ -64,7 +77,7 @@ class RecipesController < ApplicationController
 
 	def add_label
 		unless params[:name].blank?
-      name = params[:name].strip
+      name = params[:name].strip.titleize
 			@recipe.label_list.add name
 			@recipe.save
 		end

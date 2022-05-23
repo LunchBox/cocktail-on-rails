@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   resources :recipes do 
 		collection do 
 			get :available
+      get :labels
 		end
       
 		member do 

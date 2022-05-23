@@ -17,8 +17,9 @@
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="my-4">
-    <%= text_field_tag :name, nil, class: "w-auto" %>
+  <div data-controller="autocomplete" data-autocomplete-url-value="/recipes/labels" class="my-4">
+    <%= text_field_tag :name, nil, class: "w-auto", data: {autocomplete_target: 'input'} %>
+    <ul class="list-group absolute" data-autocomplete-target="results"></ul>
   </div>
 
   <%= f.submit "Add", class: "btn btn--primary" %>
