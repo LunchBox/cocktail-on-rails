@@ -24,3 +24,8 @@
 
   <%= f.submit "Add", class: "btn btn--primary" %>
 <% end%>
+
+<h3 class="my-4">Most used labels</h3>
+<% current_user.recipes.top_labels.each do |label| %>
+  <%= button_to label, [:add_label, @recipe, name: label.name], method: :put, class: "btn btn--light text-sm", form: {class: "inline-flex"} %>
+<% end %>
