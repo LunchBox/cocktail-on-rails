@@ -33,8 +33,7 @@ class ItemsController < ApplicationController
       @items = []
     else
       @keyword = params[:q].strip
-      @items = Item.search_by(params[:q])
-      @pagy, @items = pagy(@items)
+      @items = Item.search_by(@keyword)
     end
 
     respond_to do |format|

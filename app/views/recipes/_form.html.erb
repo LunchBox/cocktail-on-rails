@@ -27,9 +27,19 @@
     </div>
   </div>
 
-
   <%= f.input :preparation, input_html: {data: {controller: "textarea-autogrow"}}, wrapper_html: {class: "mb-2"} %>
+
+  <%= f.input :container, wrapper_html: {class: "mb-2"}, input_html: {list: "container-options"} %>
+  <datalist id="container-options">
+    <% current_user.items.tagged_with("Cocktail Glass").each do |item| %>
+      <option value="<%= item.name %>">
+    <% end %>
+  </datalist>
+
+
   <%= f.input :timing, as: :select, collection: Recipe::TIMINGS, wrapper_html: {class: "mb-2"} %>
+
+
   <%= f.submit class: "btn btn--primary" %>
   <%= link_to "Cancel", :recipes, class: "btn btn--light" %>
 <% end%>
