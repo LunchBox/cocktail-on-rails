@@ -40,7 +40,15 @@ form .input {
 form .inline-inputs .input {
   @apply my-0 mb-1;
 }
+form .inline-inputs .input input,
+form .inline-inputs .input select {
+  @apply w-auto;
+}
 
+[multiple], [type=date], [type=datetime-local], [type=email], [type=month], [type=number], [type=password], [type=search], [type=tel], [type=text], [type=time], [type=url], [type=week], select, textarea {
+  width: 640px;
+  max-width: 100%;
+}
 
 
 
