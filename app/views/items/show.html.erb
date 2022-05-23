@@ -23,7 +23,13 @@
   <%= link_to "Edit Labels", [:edit_labels, @item], class: "btn btn--light mr-1" %>
 
 	<% if mark = current_user.in_my_bar?(@item) %>
-		<%= button_to "In My Bar", mark, method: :delete, class: "btn btn--light mr-1", form: {data: {}} %>
+    <%= button_to mark, method: :delete, class: "btn btn--light mr-1 inline-flex items-center", form: {data: {}} do %>
+      <i class="fa-solid fa-check mr-1"></i> In My Bar
+    <% end %>
+  <% elsif current_user.has_ingredient? @item.name %>
+    <span class="text-orange-500 btn btn--light mr-1 inline-flex items-center">
+      <i class="fa-solid fa-check mr-1"></i> In My Bar
+    </span>
 	<% else %>
 		<%= button_to "+ Add to My Bar", [:marks, markable_type: "Item", markable_id: @item.id, context: 'bar_item'], class: "btn btn--light mr-1", method: :post %>
 	<% end %>
