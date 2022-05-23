@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :ingredients
+
   resources :recipes do 
 		collection do 
 			get :available
@@ -28,6 +29,7 @@ Rails.application.routes.draw do
 			get :edit_labels
 			put :add_label
 			put :remove_label
+      get :fork
 		end
 
     resources :ingredients

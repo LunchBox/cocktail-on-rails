@@ -36,6 +36,16 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new
   end
 
+  def fork
+    @source = Recipe.find params[:id]
+    @recipe = @source.dup
+    @recipe.name += " [fork: #{SecureRandom.urlsafe_base64(8)}]"
+    @source.ingredients.each do |ingredient|
+      @recipe.ingredients << ingredient.dup
+    end
+
+  end
+
   def create
     @recipe = Recipe.new recipe_params
     @recipe.user = current_user
