@@ -9,6 +9,10 @@ class User < ApplicationRecord
 
   has_many :marks, dependent: :destroy
 
+  def recipe_containers
+    self.recipes.select("distinct container").where.not(container: nil).order("container asc").map(&:container)
+  end
+
 	def bar_items
 		Item.joins(:marks).where(marks: {context: "bar_item", user_id: self.id})
 	end

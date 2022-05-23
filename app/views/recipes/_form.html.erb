@@ -31,8 +31,8 @@
 
   <%= f.input :container, wrapper_html: {class: "mb-2"}, input_html: {list: "container-options"} %>
   <datalist id="container-options">
-    <% current_user.items.tagged_with("Cocktail Glass").each do |item| %>
-      <option value="<%= item.name %>">
+    <% current_user.recipe_containers.each do |name| %>
+      <option value="<%= name %>">
     <% end %>
   </datalist>
 
