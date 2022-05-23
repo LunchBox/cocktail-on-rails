@@ -37,6 +37,10 @@ form .input {
 	@apply my-4;
 }
 
+form .inline-inputs .input {
+  @apply my-0 mb-1;
+}
+
 
 
 
