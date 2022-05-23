@@ -8,7 +8,7 @@ class Ingredient < ApplicationRecord
 
   scope :ordered, -> { order id: :asc }
 
-  UNITS = [:ml, :cl, :oz, :part, :dash, :spoon, :tablespoon]
+  UNITS = [:ml, :cl, :oz, :shot, :part, :dash, :spoon, :barspoon, :tablespoon]
 
   before_validation :cleanup
   def cleanup
