@@ -9,6 +9,13 @@ class User < ApplicationRecord
 
   has_many :marks, dependent: :destroy
 
+  validates :name, presence: true, uniqueness: true
+
+  def to_s
+    self.name.blank? ? "- unnamed -" : self.name
+  end
+
+
   def recipe_containers
     self.recipes.select("distinct container").where.not(container: nil).order("container asc").map(&:container)
   end
