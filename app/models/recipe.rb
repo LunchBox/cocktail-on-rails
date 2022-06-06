@@ -41,4 +41,8 @@ class Recipe < ApplicationRecord
 
     return self.where(["name like ?", "%#{query}%"])
   end
+
+  def check_ingredients items
+    self.ingredients.select{|i| items.include?(i.name)}
+  end
 end

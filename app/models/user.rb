@@ -20,24 +20,34 @@ class User < ApplicationRecord
     self.recipes.select("distinct container").where.not(container: nil).order("container asc").map(&:container)
   end
 
+  # actual items
 	def bar_items
 		Item.joins(:marks).where(marks: {context: "bar_item", user_id: self.id})
 	end
+
+  # items including labeled items
+  def relative_bar_items
+    bis = self.bar_items
+    collected_bis = bis.map do |item|
+      item.collect_labeled_items.to_a
+    end
+    (bis + collected_bis).flatten.uniq
+  end
 
 	def in_my_bar? item
 		self.marks.find_by context: "bar_item", markable: item
 	end
 
-	def has_ingredient? item_name
-		items = self.bar_items
-		item_names = items.map &:name
-		return true if item_names.include? item_name
+	# def has_ingredient? item_name
+	# 	items = self.bar_items
+	# 	item_names = items.map &:name
+	# 	return true if item_names.include? item_name
 
-		items.each do |item|
-			return true if item.collect_labeled_items.map(&:name).include? item_name
-		end
-		false
-	end
+	# 	items.each do |item|
+	# 		return true if item.collect_labeled_items.map(&:name).include? item_name
+	# 	end
+	# 	false
+	# end
 
 	def wish_items
 		Item.joins(:marks).where(marks: {context: "wish_item", user_id: self.id})

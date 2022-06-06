@@ -18,7 +18,7 @@
 				<%= button_to mark, method: :delete, class: "inline text-green-500", form_class: "inline" do %>
 					<i class="fa-solid fa-check"></i> IN BAR
 				<% end %>
-			<% elsif current_user.has_ingredient? item.name %>
+			<% elsif @my_bar_items.include? item.name %>
 				<span class="text-orange-500">
 					<i class="fa-solid fa-check"></i> IN BAR
 				</span>

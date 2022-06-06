@@ -6,7 +6,7 @@
 	<span class="mr-2">
 		<%= link_to ingredient.name, items_path(q: ingredient.name) %>
 
-		<% if current_user.has_ingredient? ingredient.name %>
+		<% if @my_bar_items.include? ingredient.name %>
 			<i class="fa-solid fa-check"></i>
 		<% end %>
 	</span>

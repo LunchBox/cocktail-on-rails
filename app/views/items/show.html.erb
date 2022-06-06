@@ -26,7 +26,7 @@
     <%= button_to mark, method: :delete, class: "btn btn--light mr-1 inline-flex items-center", form: {data: {}} do %>
       <i class="fa-solid fa-check mr-1"></i> In My Bar
     <% end %>
-  <% elsif current_user.has_ingredient? @item.name %>
+  <% elsif @my_bar_items.include? @item.name %>
     <span class="text-orange-500 btn btn--light mr-1 inline-flex items-center">
       <i class="fa-solid fa-check mr-1"></i> In My Bar
     </span>
