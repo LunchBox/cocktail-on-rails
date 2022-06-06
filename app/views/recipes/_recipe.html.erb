@@ -1,5 +1,5 @@
 <% ingredients = recipe.check_ingredients(@my_bar_items) %>
-<% full_match = recipe.ingredients.size > 0 and ingredients.size == recipe.ingredients.size %>
+<% full_match = (recipe.ingredients.size > 0 and ingredients.size == recipe.ingredients.size) %>
 <div class="flex items-center py-1 border-b">
   <% if full_match %>
     <i class="fa-solid fa-check mr-2 text-green-500 text-sm"></i>
