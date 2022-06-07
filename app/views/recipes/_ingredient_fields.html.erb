@@ -1,14 +1,16 @@
-<div class="flex items-center nested-form-wrapper inline-inputs" data-new-record="<%= f.object.new_record? %>">
-  <div data-controller="autocomplete" data-autocomplete-url-value="/items/search" class="mr-1">
+<div class="flex items-center gap-x-1 nested-form-wrapper inline-inputs" data-new-record="<%= f.object.new_record? %>">
+  <div data-controller="autocomplete" data-autocomplete-url-value="/items/search">
     <%= f.input :name, label: false, 
       input_html: {placeholder: "Item Name", class: "w-auto", data: {autocomplete_target: 'input'} } %>
     <ul class="list-group absolute" data-autocomplete-target="results"></ul>
   </div>
 
-  <%= f.input :quantity, label: false, input_html: {placeholder: "Quantity"}, wrapper_html: { class: "mr-1" } %>
-  <%= f.input :unit, collection: Ingredient::UNITS, label: false, input_html: {placeholder: "unit"}, wrapper_html: { class: "mr-1" } %>
+  <%= f.input :quantity, label: false, input_html: {placeholder: "Quantity"} %>
+  <%= f.input :unit, label: false, input_html: {list: "unit-options"} %>
 
-  <button type="button" data-action="nested-form#remove" class="btn btn--light">Remove</button>
+  <div class="input">
+    <button type="button" data-action="nested-form#remove" class="btn btn--light">Remove</button>
+  </div>
 
   <%= f.hidden_field :_destroy %>
 </div>

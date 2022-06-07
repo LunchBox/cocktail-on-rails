@@ -17,7 +17,11 @@ class User < ApplicationRecord
 
 
   def recipe_containers
-    self.recipes.select("distinct container").where.not(container: nil).order("container asc").map(&:container)
+    self.recipes.select("distinct container").map(&:container).compact.sort
+  end
+
+  def ingredient_units
+    self.recipes.joins(:ingredients).select("distinct ingredients.unit").map(&:unit).compact.sort
   end
 
   # actual items
