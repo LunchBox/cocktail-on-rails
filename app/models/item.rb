@@ -53,7 +53,7 @@ class Item < ApplicationRecord
 
   def self.search_by query
     return [] if query.blank?
-
-    return self.where(["lower(name) like ?", "%#{query.strip.downcase}%"])
+		
+		self.where(["lower(name) like ? or id in (?)", "%#{query.strip.downcase}%", self.select(:id).tagged_with(query, on: :labels)])
   end
 end

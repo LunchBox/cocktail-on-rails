@@ -1,3 +1,5 @@
 <% item.labels.each do |label| %>
-	<%= link_to label, items_path({label: label.to_s}),  class: "bg-gray-200 text-gray-500 py-1 px-2 rounded-sm text-sm" %>
+	<%= link_to items_path({label: label.to_s}),  class: "bg-gray-200 text-gray-500 py-1 px-2 rounded-sm" do %>
+		<%= highlight label.to_s, @keyword %>
+	<% end %>
 <% end %>

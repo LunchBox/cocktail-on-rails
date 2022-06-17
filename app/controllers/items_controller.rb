@@ -5,9 +5,11 @@ class ItemsController < ApplicationController
   def index
     if !params[:q].blank?
       @keyword = params[:q].strip
-      @items = Item.search_by(params[:q])
+      @items = Item.search_by(@keyword)
 		elsif !params[:label].blank?
-			@items = Item.tagged_with params[:label], on: :labels
+			@keyword = params[:label].strip
+			@items = Item.search_by(@keyword)
+			# @items = Item.tagged_with params[:label], on: :labels
     else
       @items = Item.ordered
     end
