@@ -5,7 +5,7 @@
 <div class="my-4">
 	<% @item.labels.each do |label| %>
 		<div class="flex items-center py-1 border-b">
-			<%= label %>
+			<%= link_to label, items_path({label: label.to_s}) %>
 			<%= button_to "Remove", [:remove_label, @item, name: label.to_s], class: "ml-4 btn btn--light", method: :put, 
 				form: {data: {turbo_method: :put, turbo_confirm: "Are you sure?"}} %>
 		</div>
