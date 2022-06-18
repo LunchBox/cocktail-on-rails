@@ -19,4 +19,12 @@ class Ingredient < ApplicationRecord
 	def save_item
 		Item.find_or_create_by name: self.name, user: self.recipe.user
 	end
+
+	def f_quantity
+		if self.quantity.to_i == self.quantity
+			self.quantity.to_i
+		else
+			self.quantity
+		end
+	end
 end

@@ -2,7 +2,7 @@
   <%= render "recipes/breadcrumbs", recipe: @recipe %>
 </div>
 
-<div class="my-4">
+<div class="my-4 flex flex-wrap text-sm gap-x-1">
   <% @recipe.labels.each do |label| %>
     <%= link_to label, [:recipes, {label: label.to_s}],  class: "bg-gray-200 text-gray-500 py-1 px-2 rounded-sm text-sm" %>
   <% end %>
@@ -25,38 +25,54 @@
 </div>
 
 <div class="my-4">
-  <div class="flex">
-    <%= link_to "Edit", [:edit, @recipe], class: "btn btn--light mr-1" %>
-    <%= link_to "Edit Labels", [:edit_labels, @recipe], class: "btn btn--light mr-1" %>
-    <%= link_to "Fork", [:fork, @recipe], class: "btn btn--light mr-1" %>
+  <div class="flex items-center text-sm gap-x-1">
+    <%= link_to "Edit", [:edit, @recipe], class: "btn btn--light" %>
+    <%= link_to "Edit Labels", [:edit_labels, @recipe], class: "btn btn--light" %>
+    <%= link_to "Fork", [:fork, @recipe], class: "btn btn--light" %>
     <%= button_to "Delete", @recipe, method: :delete, class: "btn btn--light", form: {data: {turbo_confirm: "Are you sure?"}} %>
   </div>
 </div>
 
-<h2 class="my-4 font-bold">Ingredients</h2>
-
-<%= render @recipe.ingredients.ordered %>
-
 <div class="my-4">
-  <%= simple_format @recipe.preparation %>
+	<h2 class="">Ingredients</h2>
+	<%= render @recipe.ingredients.ordered %>
 </div>
 
-<h2 class="my-4 font-bold">Container</h2>
+<% unless @recipe.preparation.blank? %>
+	<div class="my-4">
+		<h2 class="">Preparation</h2>
+		<div class="">
+			<%= simple_format @recipe.preparation %>
+		</div>
+	</div>
+<% end %>
+
+<% unless @recipe.container.blank? %>
+	<div class="my-4">
+		<h2 class="">Container</h2>
+		<div class="">
+			<%= @recipe.container %>
+		</div>
+	</div>
+<% end %>
+
+<% unless @recipe.timing.blank? %>
+	<div class="my-4">
+		<h2 class="">Timing</h2>
+		<div class="">
+			<%= @recipe.timing %>
+		</div>
+	</div>
+<% end %>
+
+
 <div class="my-4">
-  <%= @recipe.container %>
-</div>
+	<h2 class="">Comments</h2>
 
-<h2 class="my-4 font-bold">Timing</h2>
-<div class="my-4">
-  <%= @recipe.timing %>
-</div>
-
-
-<h2 class="my-4 font-bold">Comments</h2>
-
-<div class="my-4">
-	<% @commentable = @recipe %>
-  <%= render "comments/form", comment: Comment.new %>
+	<div class="">
+		<% @commentable = @recipe %>
+		<%= render "comments/form", comment: Comment.new %>
+	</div>
 </div>
 
 <div class="my-4">
