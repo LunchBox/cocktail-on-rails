@@ -10,10 +10,10 @@ class Ingredient < ApplicationRecord
 
   UNITS = [:ml, :cl, :oz, :shot, :part, :dash, :spoon, :barspoon, :tablespoon]
 
-  before_validation :cleanup
-  def cleanup
-		self.name = self.name.to_s.strip
-  end
+	def name= str
+		return if str.blank?
+		write_attribute :name, str.to_s.strip
+	end
 
 	before_validation :save_item
 	def save_item

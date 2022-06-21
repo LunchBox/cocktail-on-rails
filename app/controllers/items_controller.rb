@@ -1,7 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: %i[ show edit update destroy edit_labels add_label remove_label ]
 
-  # GET /items or /items.json
   def index
     if !params[:q].blank?
       @keyword = params[:q].strip
@@ -9,7 +8,6 @@ class ItemsController < ApplicationController
 		elsif !params[:label].blank?
 			@keyword = params[:label].strip
 			@items = Item.search_by(@keyword)
-			# @items = Item.tagged_with params[:label], on: :labels
     else
       @items = Item.ordered
     end
@@ -49,7 +47,7 @@ class ItemsController < ApplicationController
 
   # GET /items/new
   def new
-    @item = Item.new
+    @item = Item.new name: params[:name], label_list: params[:label]
   end
 
   # GET /items/1/edit
@@ -130,6 +128,12 @@ class ItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def item_params
-      params.require(:item).permit(:name, :cover_image, :parent_name, :label_list, labels_attributes: [:id, :name, :quantity, :unit, :_destroy])
+      params.require(:item).permit(
+				:name, 
+				:cover_image, 
+				:parent_name, 
+				:label_list,
+				:collection_list
+			)
     end
 end

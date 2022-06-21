@@ -6,7 +6,7 @@
 
   <%= f.input :cover_image, as: :file %>
 
-  <%= f.input :label_list, input_html: {value: params[:label]} if f.object.new_record? %>
+  <%= f.input :label_list, as: :text %>
 
   <%= f.submit class: "btn btn--primary" %>
 <% end%>

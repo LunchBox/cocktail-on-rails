@@ -3,9 +3,12 @@
   <%= render "items/breadcrumbs", item: @item %>
 </div>
 
-<div class="my-4 flex flex-wrap text-sm gap-x-1">
-	<%= render "items/labels", item: @item %>
-</div>
+
+<% unless @item.labels.blank? %>
+	<div class="text-sm text-gray-500">
+		<%= render "labels", item: @item %>
+	</div>
+<% end %>
 
 <div class="my-4">
   <h1 class="text-2xl"><%= @item.name %></h1>
@@ -16,6 +19,7 @@
 		</span>
   </div>
 </div>
+
 
 
 <div class="my-4 flex items-center text-sm gap-x-1">
@@ -42,6 +46,8 @@
 
   <%= button_to "Delete", @item, method: :delete, class: "btn btn--light", form: {data: {turbo_confirm: "Are you sure?"}} %>
 </div>
+
+
 
 <div class="my-4 flex">
   <% if @item.cover_image.attached? %>

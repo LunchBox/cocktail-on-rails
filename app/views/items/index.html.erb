@@ -16,7 +16,7 @@
 </div>
 
 <div class="my-4">
-	<%= link_to "Add Item", :new_item, class: "btn btn--light" %>
+	<%= link_to "Add Item", [:new_item, name: params[:q], label: params[:label]], class: "btn btn--light" %>
 </div>
 
 

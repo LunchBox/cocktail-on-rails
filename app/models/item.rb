@@ -16,13 +16,13 @@ class Item < ApplicationRecord
 	belongs_to :user
 
   acts_as_taggable_on :labels
-  accepts_nested_attributes_for :labels, reject_if: :all_blank, allow_destroy: true
 
+	# acts_as_taggable_on :collections
 
-  before_validation :cleanup
-  def cleanup
-    self.name = self.class.format_name(self.name)
-  end
+	def name= str
+		return if str.blank?
+		write_attribute :name, self.class.format_name(str)
+	end
 
   def self.format_name str
     str.to_s.strip.titleize

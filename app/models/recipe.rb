@@ -27,6 +27,11 @@ class Recipe < ApplicationRecord
   # after_destroy_commit -> { broadcast_remove_to "recipes" }
   broadcasts_to ->(recipe) { "recipes" }, inserts_by: :prepend
 
+	def name= str
+		return if str.blank?
+		write_attribute :name, str.to_s.strip
+	end
+
   after_commit :send_counter, on: [:create, :destroy]
   def send_counter
     broadcast_update_to "recipes_count", target: "recipes_count", html: "There are #{Recipe.count} recipes now."
