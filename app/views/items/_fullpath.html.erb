@@ -1,4 +1,4 @@
 
 <%= link_to item, class: "" do %>
-  <%= highlight item.name, @keyword %>
+  <%= highlight h(item.name), @keyword %>
 <% end %>

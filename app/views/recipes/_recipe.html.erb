@@ -9,7 +9,7 @@
 
   <div>
     <%= link_to recipe do %>
-      <%= highlight recipe.name, @keyword %>
+      <%= highlight h(recipe.name), @keyword %>
     <% end %>
 
     <span class="ml-2 text-sm <%= full_match ? 'text-green-500' : 'text-gray-500' %>">

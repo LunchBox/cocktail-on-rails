@@ -1,11 +1,5 @@
-<% if false %>
-	<% item.labels.each do |label| %>
-		<%= link_to items_path({label: label.to_s}),  class: "bg-gray-200 text-gray-500 py-1 px-2 rounded-sm" do %>
-			<%= highlight label.to_s, @keyword %>
-		<% end %>
-	<% end %>
-<% end %>
-
 <%== item.labels.map do |label| 
-	link_to "##{label}", items_path({label: label.to_s}),  class: ""
+	link_to items_path({label: label.to_s}),  class: "" do
+		highlight "##{h label}", @keyword
+	end
 end.join(", ") %>
