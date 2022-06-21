@@ -21,7 +21,6 @@ class CommentsController < ApplicationController
 
   # POST /comments or /comments.json
   def create
-		
 		@commentable = params[:commentable_type].constantize.find(params[:commentable_id])
     @comment = @commentable.comments.new(comment_params)
 		@comment.user = current_user
@@ -31,7 +30,7 @@ class CommentsController < ApplicationController
         format.html { redirect_to @commentable, notice: "Comment was successfully created." }
         format.json { render :show, status: :created, location: @comment }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { redirect_back fallback_location: @commentable, status: :unprocessable_entity }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
