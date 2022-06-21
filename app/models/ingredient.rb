@@ -21,7 +21,9 @@ class Ingredient < ApplicationRecord
 	end
 
 	def f_quantity
-		if self.quantity.to_i == self.quantity
+		if self.quantity.to_i == 0
+			nil
+		elsif self.quantity.to_i == self.quantity
 			self.quantity.to_i
 		else
 			self.quantity

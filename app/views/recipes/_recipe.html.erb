@@ -4,11 +4,9 @@
   <% if full_match %>
     <i class="fa-solid fa-check mr-2 text-green-500 text-sm"></i>
   <% end %>
-  <% if recipe.cover_image.attached? %>
-    <div>
-      <%= image_tag recipe.cover_image.variant(:thumb) %>
-    </div>
-  <% end %>
+
+
+
   <div>
     <%= link_to recipe do %>
       <%= highlight recipe.name, @keyword %>

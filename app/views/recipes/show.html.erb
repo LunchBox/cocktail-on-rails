@@ -8,13 +8,9 @@
   <% end %>
 </div>
 
-<div class="my-4">
-  <% if @recipe.cover_image.attached? %>
-    <div>
-      <%= image_tag @recipe.cover_image.variant(:thumb) %>
-    </div>
-  <% end %>
 
+
+<div class="my-4">
   <h1 class="text-xl"><%= @recipe.name %></h1>
   <div class="text-sm text-gray-400">
 		<%= @recipe.user %> &middot;
@@ -33,37 +29,52 @@
   </div>
 </div>
 
-<div class="my-4">
-	<h2 class="">Ingredients</h2>
-	<%= render @recipe.ingredients.ordered %>
+
+<div class="flex gap-x-4">
+  <% if @recipe.cover_image.attached? %>
+    <div class="text-center" style="width: 240px;">
+			<% if @recipe.cover_image.content_type.starts_with? "image" %>
+      	<%= image_tag @recipe.cover_image.representation(resize_to_limit: [240, 640]) %>
+			<% elsif @recipe.cover_image.content_type.starts_with? "video" %>
+				<%= image_tag @recipe.cover_image.preview(resize_to_limit: [240, 640]) %>
+			<% end %>
+    </div>
+  <% end %>
+
+	<div>
+		<div class="my-4">
+			<h2 class="">Ingredients</h2>
+			<%= render @recipe.ingredients.ordered %>
+		</div>
+
+		<% unless @recipe.preparation.blank? %>
+			<div class="my-4">
+				<h2 class="">Preparation</h2>
+				<div class="">
+					<%= simple_format @recipe.preparation %>
+				</div>
+			</div>
+		<% end %>
+
+		<% unless @recipe.container.blank? %>
+			<div class="my-4">
+				<h2 class="">Container</h2>
+				<div class="">
+					<%= @recipe.container %>
+				</div>
+			</div>
+		<% end %>
+
+		<% unless @recipe.timing.blank? %>
+			<div class="my-4">
+				<h2 class="">Timing</h2>
+				<div class="">
+					<%= @recipe.timing %>
+				</div>
+			</div>
+		<% end %>
+	</div>
 </div>
-
-<% unless @recipe.preparation.blank? %>
-	<div class="my-4">
-		<h2 class="">Preparation</h2>
-		<div class="">
-			<%= simple_format @recipe.preparation %>
-		</div>
-	</div>
-<% end %>
-
-<% unless @recipe.container.blank? %>
-	<div class="my-4">
-		<h2 class="">Container</h2>
-		<div class="">
-			<%= @recipe.container %>
-		</div>
-	</div>
-<% end %>
-
-<% unless @recipe.timing.blank? %>
-	<div class="my-4">
-		<h2 class="">Timing</h2>
-		<div class="">
-			<%= @recipe.timing %>
-		</div>
-	</div>
-<% end %>
 
 
 <div class="my-4">
