@@ -2,13 +2,15 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :edit_labels, :update, :destroy, :add_label, :remove_label]
 
   def index
+		_recipes = current_user.recipes.includes(:ingredients)
+
     if !params[:query].blank?
       @keyword = params[:query].strip
-      @recipes = current_user.recipes.search_by(params[:query])
+      @recipes = _recipes.search_by(params[:query])
 		elsif !params[:label].blank?
-      @recipes = current_user.recipes.tagged_with params[:label], on: :labels
+      @recipes = _recipes.tagged_with params[:label], on: :labels
     else
-      @recipes = current_user.recipes.ordered
+      @recipes = _recipes.ordered
     end
   end
 

@@ -1,23 +1,23 @@
 <% ingredients = recipe.check_ingredients(@my_bar_items) %>
 <% full_match = (recipe.ingredients.size > 0 and ingredients.size == recipe.ingredients.size) %>
-<div class="flex items-center py-1 border-b">
+<div class="flex items-center gap-x-2 py-1 border-b">
   <% if full_match %>
-    <i class="fa-solid fa-check mr-2 text-green-500 text-sm"></i>
+    <i class="fa-solid fa-check text-green-500 text-sm"></i>
   <% end %>
 
+	<%= link_to recipe do %>
+		<%= highlight h(recipe.name), @keyword %>
+	<% end %>
 
+	<span class="text-sm <%= full_match ? 'text-green-500' : 'text-gray-500' %>">
+		<%= ingredients.size %> /
+		<%= recipe.ingredients.size %>
+	</span>
 
-  <div>
-    <%= link_to recipe do %>
-      <%= highlight h(recipe.name), @keyword %>
-    <% end %>
-
-    <span class="ml-2 text-sm <%= full_match ? 'text-green-500' : 'text-gray-500' %>">
-      <%= ingredients.size %> /
-      <%= recipe.ingredients.size %>
-    </span>
-  </div>
-  <div class="ml-4">
+  <span>
     <%= render "recipes/labels", recipe: recipe %>
-  </div>
+  </span>
+	<span class="text-sm text-gray-400">
+		<%= recipe.ingredients.map(&:name).join(", ") %>
+	</span>
 </div>
