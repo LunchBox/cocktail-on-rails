@@ -1,9 +1,11 @@
 <div class="flex py-1 border-b">
-	<div class="w-16 bg-gray-100 mr-2 flex justify-center">
-		<% if item.cover_image.attached? %>
-      <%= image_tag item.cover_image.variant(:thumb), class: "block" %>
-		<% end %>
-	</div>
+	<% if false %>
+		<div class="w-16 bg-gray-100 mr-2 flex justify-center">
+			<% if item.cover_image.attached? %>
+				<%= image_tag item.cover_image.variant(:thumb), class: "block" %>
+			<% end %>
+		</div>
+	<% end %>
   <div>
     <%= render "items/fullpath", item: item %>
 

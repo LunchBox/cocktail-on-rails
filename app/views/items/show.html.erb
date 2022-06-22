@@ -56,6 +56,17 @@
 
 <div class="my-4 mt-8">
 	<h3 class="">
+		Alternative Options
+	</h3>
+	<div class="">
+		<% Item.tagged_with(@item.name, on: :labels).each do |item| %>
+			<%= render item %>
+		<% end %>
+	</div>
+</div>
+
+<div class="my-4 mt-8">
+	<h3 class="">
 		Used in <%= @item.involved_ingredient_size %> Recipes
 	</h3>
 	<div class="">
