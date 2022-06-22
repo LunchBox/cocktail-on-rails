@@ -1,4 +1,4 @@
-<div class="flex py-1 border-b">
+<div class="flex items-center gap-x-2 py-1 border-b">
 	<% if false %>
 		<div class="w-16 bg-gray-100 mr-2 flex justify-center">
 			<% if item.cover_image.attached? %>
@@ -6,41 +6,40 @@
 			<% end %>
 		</div>
 	<% end %>
-  <div>
-    <%= render "items/fullpath", item: item %>
 
-    <% if item.involved_ingredient_size > 0 %>
-      <span class="text-sm text-gray-400">
-        in <%= item.involved_ingredient_size %> recipes
-      </span>
-    <% end %>
+	<%= render "items/fullpath", item: item %>
 
-		<span class="ml-2 text-sm text-gray-400">
-			<% if mark = current_user.in_my_bar?(item) %>
-				<%= button_to mark, method: :delete, class: "inline text-green-500", form_class: "inline" do %>
-					<i class="fa-solid fa-check"></i> IN BAR
-				<% end %>
-			<% elsif @my_bar_items.include? item.name %>
-				<span class="text-orange-500">
-					<i class="fa-solid fa-check"></i> IN BAR
-				</span>
-			<% else %>
-				<%= button_to "+ TO MY BAR", [:marks, markable_type: "Item", markable_id: item.id, context: 'bar_item'], method: :post, form_class: "inline" %>
+	<% if item.involved_ingredient_size > 0 %>
+		<span class="text-sm text-gray-400">
+			in <%= item.involved_ingredient_size %> recipes
+		</span>
+	<% end %>
+
+	<span class="text-sm text-gray-400">
+		<% if mark = current_user.in_my_bar?(item) %>
+			<%= button_to mark, method: :delete, class: "inline text-green-500", form_class: "inline" do %>
+				<i class="fa-solid fa-check"></i> IN BAR
 			<% end %>
-		</span>
+		<% elsif @my_bar_items.include? item.name %>
+			<span class="text-orange-500">
+				<i class="fa-solid fa-check"></i> IN BAR
+			</span>
+		<% else %>
+			<%= button_to "+ TO MY BAR", [:marks, markable_type: "Item", markable_id: item.id, context: 'bar_item'], method: :post, form_class: "inline" %>
+		<% end %>
+	</span>
 
-		<span class="ml-2 mr-4 text-sm text-gray-400">
-			<% if mark = current_user.in_my_wish_list?(item) %>
-				<%= button_to mark, method: :delete, class: "text-green-500", form_class: "inline" do %>
-					<i class="fa-solid fa-check"></i> ON LIST
-				<% end %>
-			<% else %>
-				<%= button_to "+ WISH", [:marks, markable_type: "Item", markable_id: item.id, context: 'wish_item'], method: :post, form_class: "inline" %>
+	<span class="text-sm text-gray-400">
+		<% if mark = current_user.in_my_wish_list?(item) %>
+			<%= button_to mark, method: :delete, class: "text-green-500", form_class: "inline" do %>
+				<i class="fa-solid fa-check"></i> ON LIST
 			<% end %>
-		</span>
+		<% else %>
+			<%= button_to "+ WISH", [:marks, markable_type: "Item", markable_id: item.id, context: 'wish_item'], method: :post, form_class: "inline" %>
+		<% end %>
+	</span>
 
-		<span class="text-sm text-gray-600">
-			<%= render "items/labels", item: item %>
-		</span>
-  </div>
+	<span class="text-sm text-gray-400">
+		<%= render "items/labels", item: item %>
+	</span>
 </div>
